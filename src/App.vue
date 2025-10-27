@@ -7,8 +7,10 @@ import AboutView from './views/aboutView.vue';
 <template>
   <v-app>
     <NavBar />
-    <HomeView />
-    <AboutView />
+    <v-main>
+      <HomeView />
+      <AboutView />
+    </v-main>
   </v-app>
 </template>
 

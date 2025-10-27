@@ -29,6 +29,7 @@ const carouselImg = [
   'src/assets/img/filipinas04.jpg',
   'src/assets/img/filipinas05.jpg',
   'src/assets/img/filipinas06.jpg',
+  
 ]
 </script>
 <style scoped>

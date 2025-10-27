@@ -1,5 +1,5 @@
 <template>
-  <v-container class="py-8">
+  <v-container id="about-section" class="py-8">
     <div class="text-center mb-10">
       <h1 class="display-2 font-weight-bold mb-4 gradient-title">About Us</h1>
       <p class="subtitle-1 text-grey-darken-1 mx-auto" style="max-width: 600px">
