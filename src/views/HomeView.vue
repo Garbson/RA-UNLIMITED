@@ -23,13 +23,13 @@
 </template>
 <script setup>
 const carouselImg = [
-  'src/assets/img/filipinas01.jpg',
-  'src/assets/img/filipinas02.jpg',
-  'src/assets/img/filipinas03.jpg',
-  'src/assets/img/filipinas04.jpg',
-  'src/assets/img/filipinas05.jpg',
-  'src/assets/img/filipinas06.jpg',
-  
+  '/img/filipinas01.jpg',
+  '/img/filipinas02.jpg',
+  '/img/filipinas03.jpg',
+  '/img/filipinas04.jpg',
+  '/img/filipinas05.jpg',
+  '/img/filipinas06.jpg',
+
 ]
 </script>
 <style scoped>

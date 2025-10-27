@@ -1,7 +1,14 @@
 <template>
   <v-app-bar eager scroll-behavior="hide" class="bg-white-orange" :elevation="0">
-    <v-avatar size="40" class="ml-15" rounded="lg" image="src/assets/img/logoRa.jpeg" @click="scrollToHome" style="cursor: pointer;" />
-    <v-app-bar-title class="Name gradient-text" @click="scrollToHome" style="cursor: pointer;">
+    <v-avatar
+      size="40"
+      class="ml-15"
+      rounded="lg"
+      image="img/logoRa.jpeg"
+      @click="scrollToHome"
+      style="cursor: pointer"
+    />
+    <v-app-bar-title class="Name gradient-text" @click="scrollToHome" style="cursor: pointer">
       <div class="ReacheForTheSun gradient-text text-h5">RA UNLIMITED</div>
     </v-app-bar-title>
     <v-spacer />
@@ -14,7 +21,7 @@
 const scrollToHome = () => {
   window.scrollTo({
     top: 0,
-    behavior: 'smooth'
+    behavior: 'smooth',
   })
 }
 
