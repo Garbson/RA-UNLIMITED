@@ -1,0 +1,9 @@
+:root {
+  --v-font-family:
+    'Arimo', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    sans-serif;
+}
+
+body {
+  font-family: var(--v-font-family);
+}
