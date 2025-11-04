@@ -280,22 +280,35 @@ const carouselImg = [
 }
 
 .text-container {
-  background: linear-gradient(135deg, rgba(22, 21, 21, 0.8) 0%, rgba(255, 165, 0, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(22, 21, 21, 0.9) 0%, rgba(255, 165, 0, 0.8) 50%, rgba(22, 21, 21, 0.5) 100%);
   backdrop-filter: blur(8px);
   border-radius: 16px;
   padding: 24px 32px;
   margin: 32px;
   border: 2px solid rgba(255, 119, 0, 0.3);
-  box-shadow: 0 8px 32px rgba(255, 165, 0, 0.2);
+  box-shadow: 0 8px 32px rgba(255, 165, 0, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.3);
   max-width: 600px;
   animation: fadeInUp 0.8s ease-out;
+  position: relative;
+  overflow: hidden;
+}
+
+.text-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.4) 100%);
+  pointer-events: none;
 }
 
 .carousel-text {
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
   line-height: 1.3;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0.5px;
 }
 
