@@ -7,20 +7,22 @@
         :hide-delimiters="true"
         :show-arrows="false"
         :hide-delimiter-background="true"
-        :height="$vuetify.display.mobile ? '600' : '800'"
+        :height="$vuetify.display.mobile ? '500' : '650'"
       >
         <v-carousel-item
           v-for="(item, i) in carouselImg"
           :key="i"
           :src="item.src"
           cover
-          gradient="to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.35)"
+          gradient="to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.4)"
         >
-          <div class="h-100 d-flex align-center justify-center text-center">
-            <h2 class="ReacheForTheSun gradient-text text-white"
-                :class="$vuetify.display.mobile ? 'text-h4 pa-6' : 'text-h2 pa-10'">
-              {{ item.text }}
-            </h2>
+          <div class="h-100 d-flex text-overlay" :class="item.position">
+            <div class="text-container">
+              <h2 class="ReacheForTheSun carousel-text text-white"
+                  :class="[$vuetify.display.mobile ? 'text-h5' : 'text-h4', item.alignment]">
+                {{ item.text }}
+              </h2>
+            </div>
           </div>
         </v-carousel-item>
       </v-carousel>
@@ -76,12 +78,42 @@
 import AboutView from './aboutView.vue';
 
 const carouselImg = [
-  { src: '/img/sun.jpg', text: 'Reach for the Sun' },
-  { src: '/img/filipinas02.jpg', text: 'creating sustainable energy' },
-  { src: '/img/filipinas03.jpg', text: 'lift people out of poverty' },
-  { src: '/img/filipinas04.jpg', text: 'Energy for All Communities' },
-  { src: '/img/placaSolar.jpg', text: 'Empowering Communities, One Solar Panel at a Time' },
-  { src: '/img/filipinas06.jpg', text: "Building Tomorrow's Energy Today" },
+  {
+    src: '/img/sun.jpg',
+    text: 'Reach for the Sun',
+    position: 'justify-center align-center',
+    alignment: 'text-center'
+  },
+  {
+    src: '/img/filipinas02.jpg',
+    text: 'creating sustainable energy',
+    position: 'justify-start align-end',
+    alignment: 'text-left'
+  },
+  {
+    src: '/img/filipinas03.jpg',
+    text: 'lift people out of poverty',
+    position: 'justify-end align-start',
+    alignment: 'text-right'
+  },
+  {
+    src: '/img/filipinas04.jpg',
+    text: 'Energy for All Communities',
+    position: 'justify-start align-start',
+    alignment: 'text-left'
+  },
+  {
+    src: '/img/placaSolar.jpg',
+    text: 'Empowering Communities, One Solar Panel at a Time',
+    position: 'justify-end align-end',
+    alignment: 'text-right'
+  },
+  {
+    src: '/img/filipinas06.jpg',
+    text: "Building Tomorrow's Energy Today",
+    position: 'justify-center align-start',
+    alignment: 'text-center'
+  },
 ]
 </script>
 <style scoped>
@@ -237,6 +269,59 @@ const carouselImg = [
   .cta-solution-card {
     height: auto !important;
     min-height: 350px;
+  }
+}
+
+/* Carousel text positioning and readability */
+.text-overlay {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.text-container {
+  background: linear-gradient(135deg, rgba(22, 21, 21, 0.8) 0%, rgba(255, 165, 0, 0.8) 100%);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 24px 32px;
+  margin: 32px;
+  border: 2px solid rgba(255, 119, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(255, 165, 0, 0.2);
+  max-width: 600px;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.carousel-text {
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  line-height: 1.3;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile carousel adjustments */
+@media (max-width: 768px) {
+  .text-container {
+    padding: 16px 20px;
+    margin: 16px;
+    max-width: 90%;
+    border-radius: 12px;
+  }
+
+  .carousel-text {
+    font-size: 1.2rem !important;
+    line-height: 1.2;
   }
 }
 </style>
