@@ -378,46 +378,46 @@
         <v-col cols="12" md="4" class="mb-6">
           <h4 class="text-h6 font-weight-bold text-white mb-4">Quick Links</h4>
           <div class="footer-links">
-            <v-btn
-              variant="text"
-              color="grey-lighten-1"
-              class="footer-link pa-0 mb-2 justify-start"
-              block
-            >
-              Our Services
-            </v-btn>
-            <v-btn
-              variant="text"
-              color="grey-lighten-1"
-              class="footer-link pa-0 mb-2 justify-start"
-              block
-            >
-              Solar Solutions
-            </v-btn>
-            <v-btn
-              variant="text"
-              color="grey-lighten-1"
-              class="footer-link pa-0 mb-2 justify-start"
-              block
-            >
-              Get a Quote
-            </v-btn>
-            <v-btn
-              variant="text"
-              color="grey-lighten-1"
-              class="footer-link pa-0 mb-2 justify-start"
-              block
-            >
-              Support
-            </v-btn>
-            <v-btn
-              variant="text"
-              color="grey-lighten-1"
-              class="footer-link pa-0 mb-2 justify-start"
-              block
-            >
-              Careers
-            </v-btn>
+            <router-link to="/services" class="text-decoration-none">
+              <v-btn
+                variant="text"
+                color="grey-lighten-1"
+                class="footer-link pa-0 mb-2 justify-start"
+                block
+              >
+                Our Services
+              </v-btn>
+            </router-link>
+            <router-link to="/solar-solutions" class="text-decoration-none">
+              <v-btn
+                variant="text"
+                color="grey-lighten-1"
+                class="footer-link pa-0 mb-2 justify-start"
+                block
+              >
+                Solar Solutions
+              </v-btn>
+            </router-link>
+            <router-link to="/quote" class="text-decoration-none">
+              <v-btn
+                variant="text"
+                color="grey-lighten-1"
+                class="footer-link pa-0 mb-2 justify-start"
+                block
+              >
+                Get a Quote
+              </v-btn>
+            </router-link>
+            <router-link to="/support" class="text-decoration-none">
+              <v-btn
+                variant="text"
+                color="grey-lighten-1"
+                class="footer-link pa-0 mb-2 justify-start"
+                block
+              >
+                Support
+              </v-btn>
+            </router-link>
           </div>
         </v-col>
       </v-row>
@@ -674,6 +674,41 @@
 
   .footer-link:hover {
     transform: translateX(2px);
+  }
+
+  .display-2 {
+    font-size: 2rem !important;
+  }
+
+  .display-1 {
+    font-size: 1.8rem !important;
+  }
+
+  .text-h4 {
+    font-size: 1.3rem !important;
+  }
+
+  .gradientCard,
+  .challengeCard,
+  .impactCard {
+    height: auto !important;
+    min-height: 300px;
+  }
+
+  .card-header {
+    padding: 16px !important;
+  }
+
+  .v-card-text {
+    padding: 16px !important;
+  }
+
+  .contact-item {
+    margin-bottom: 16px;
+  }
+
+  .social-btn {
+    margin-bottom: 8px;
   }
 }
 
