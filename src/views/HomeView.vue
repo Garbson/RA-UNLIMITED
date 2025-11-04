@@ -14,7 +14,7 @@
           :key="i"
           :src="item.src"
           cover
-          gradient="to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.4)"
+          gradient=""
         >
           <div class="h-100 d-flex text-overlay" :class="item.position">
             <div class="text-container">
@@ -280,15 +280,19 @@ const carouselImg = [
 }
 
 .text-container {
-  background: linear-gradient(135deg, rgba(22, 21, 21, 0.9) 0%, rgba(255, 165, 0, 0.8) 50%, rgba(22, 21, 21, 0.5) 100%);
+  background: linear-gradient(135deg, rgba(255, 165, 0, 0.85) 0%, rgba(255, 165, 0, 0.95) 50%, rgba(255, 165, 0, 0.8) 100%);
   backdrop-filter: blur(8px);
   border-radius: 16px;
   padding: 24px 32px;
   margin: 32px;
-  border: 2px solid rgba(255, 119, 0, 0.3);
-  box-shadow: 0 8px 32px rgba(255, 165, 0, 0.2), inset 0 0 20px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 165, 0, 0.6);
+  box-shadow:
+    0 8px 32px rgba(255, 165, 0, 0.3),
+    0 4px 12px rgba(255, 165, 0, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 4px rgba(255, 165, 0, 0.3);
   max-width: 600px;
-  animation: fadeInUp 0.8s ease-out;
+  animation: fadeInUp 0.8s ease-out, gentleBreathing 4s ease-in-out infinite;
   position: relative;
   overflow: hidden;
 }
@@ -300,8 +304,39 @@ const carouselImg = [
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.4) 100%);
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(255, 119, 0, 0.2) 100%);
   pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes gentleBreathing {
+  0% {
+    transform: scale(1);
+    box-shadow:
+      0 0 15px rgba(255, 165, 0, 0.4),
+      0 8px 32px rgba(255, 165, 0, 0.3),
+      0 4px 12px rgba(255, 165, 0, 0.2),
+      inset 0 2px 4px rgba(255, 255, 255, 0.2),
+      inset 0 -2px 4px rgba(255, 165, 0, 0.3);
+  }
+  50% {
+    transform: scale(1.015);
+    box-shadow:
+      0 0 25px rgba(255, 165, 0, 0.6),
+      0 12px 40px rgba(255, 165, 0, 0.4),
+      0 6px 16px rgba(255, 165, 0, 0.3),
+      inset 0 3px 6px rgba(255, 255, 255, 0.25),
+      inset 0 -3px 6px rgba(255, 165, 0, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow:
+      0 0 15px rgba(255, 165, 0, 0.4),
+      0 8px 32px rgba(255, 165, 0, 0.3),
+      0 4px 12px rgba(255, 165, 0, 0.2),
+      inset 0 2px 4px rgba(255, 255, 255, 0.2),
+      inset 0 -2px 4px rgba(255, 165, 0, 0.3);
+  }
 }
 
 .carousel-text {
@@ -310,6 +345,8 @@ const carouselImg = [
   line-height: 1.3;
   font-weight: 600;
   letter-spacing: 0.5px;
+  position: relative;
+  z-index: 3;
 }
 
 @keyframes fadeInUp {
