@@ -1,12 +1,5 @@
 <template>
-  <v-container id="about-section" class="py-8">
-    <div class="text-center mb-10">
-      <h1 class="display-2 font-weight-bold mb-4 gradient-title">About Us</h1>
-      <p class="subtitle-1 text-grey-darken-1 mx-auto" style="max-width: 600px">
-        Discover how we are transforming the Philippines' energy future through sustainable and
-        innovative solutions
-      </p>
-    </div>
+  <v-container class="py-8">
 
     <v-row class="d-flex justify-center" spacing="6">
       <v-col cols="12" md="6" class="mb-6">
@@ -115,6 +108,141 @@
         </v-card>
       </v-col>
     </v-row>
+
+    <!-- Call to Action - Get Quote -->
+    <v-container class="py-16">
+      <v-row class="d-flex justify-center">
+        <v-col cols="12" lg="10">
+          <v-card class="cta-quote-card pa-8 elevation-8 text-center" style="border-radius: 24px">
+            <v-row class="align-center">
+              <v-col cols="12" md="8" class="text-left">
+                <h2 class="text-h3 font-weight-bold mb-4 gradient-title">
+                  Ready to Power Your Future?
+                </h2>
+                <p class="text-h6 mb-4 text-grey-darken-2">
+                  Join thousands of Filipino families who have already made the switch to clean,
+                  reliable solar energy. Start saving money while helping the environment.
+                </p>
+                <div class="benefits-list mb-6">
+                  <v-chip class="mr-2 mb-2" color="green" size="large">
+                    <v-icon left>mdi-check</v-icon>
+                    Save ₱500+ monthly
+                  </v-chip>
+                  <v-chip class="mr-2 mb-2" color="blue" size="large">
+                    <v-icon left>mdi-check</v-icon>
+                    24/7 reliable power
+                  </v-chip>
+                  <v-chip class="mr-2 mb-2" color="orange" size="large">
+                    <v-icon left>mdi-check</v-icon>
+                    25-year warranty
+                  </v-chip>
+                </div>
+              </v-col>
+              <v-col cols="12" md="4" class="text-center">
+                <router-link to="/quote" class="text-decoration-none">
+                  <v-btn
+                    color="orange"
+                    size="x-large"
+                    class="mb-4 px-8 py-4"
+                    style="border-radius: 16px"
+                    block
+                  >
+                    <v-icon left size="large">mdi-calculator</v-icon>
+                    Get FREE Quote
+                  </v-btn>
+                </router-link>
+                <p class="text-body-2 text-grey-darken-1">
+                  <v-icon size="small">mdi-clock</v-icon>
+                  Response within 24 hours
+                </p>
+              </v-col>
+            </v-row>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
+
+    <!-- Call to Action - Services & Solutions -->
+    <v-container class="py-12">
+      <div class="text-center mb-10">
+        <h2 class="display-1 font-weight-bold mb-4 gradient-title">
+          Explore Our Solar Solutions
+        </h2>
+        <p class="subtitle-1 text-grey-darken-1 mx-auto" style="max-width: 700px">
+          From residential homes to large commercial projects, we have the perfect solar solution for every need
+        </p>
+      </div>
+
+      <v-row class="d-flex justify-center" spacing="6">
+        <v-col cols="12" md="6" class="mb-6">
+          <v-card class="cta-service-card elevation-6 text-center" style="border-radius: 20px; height: 400px">
+            <div class="service-cta-header pa-6">
+              <v-icon size="80" color="white" class="mb-4">mdi-wrench</v-icon>
+              <h3 class="text-h4 font-weight-bold text-white mb-2">Our Services</h3>
+              <p class="text-body-1 text-white">Complete solar installation and maintenance</p>
+            </div>
+            <v-card-text class="pa-6 d-flex flex-column justify-space-between h-100">
+              <div>
+                <p class="text-body-1 mb-4">
+                  Professional installation, maintenance, and support for all types of solar energy systems.
+                </p>
+                <div class="service-highlights mb-6">
+                  <p class="text-body-2 mb-2">✓ Residential & Commercial Installation</p>
+                  <p class="text-body-2 mb-2">✓ 24/7 Technical Support</p>
+                  <p class="text-body-2 mb-2">✓ Maintenance & Monitoring</p>
+                </div>
+              </div>
+              <router-link to="/services" class="text-decoration-none">
+                <v-btn
+                  color="orange"
+                  size="large"
+                  class="px-6"
+                  style="border-radius: 12px"
+                  block
+                >
+                  <v-icon left>mdi-arrow-right</v-icon>
+                  View Services
+                </v-btn>
+              </router-link>
+            </v-card-text>
+          </v-card>
+        </v-col>
+
+        <v-col cols="12" md="6" class="mb-6">
+          <v-card class="cta-solution-card elevation-6 text-center" style="border-radius: 20px; height: 400px">
+            <div class="solution-cta-header pa-6">
+              <v-icon size="80" color="white" class="mb-4">mdi-solar-panel-large</v-icon>
+              <h3 class="text-h4 font-weight-bold text-white mb-2">Solar Solutions</h3>
+              <p class="text-body-1 text-white">Advanced technology for the Philippines</p>
+            </div>
+            <v-card-text class="pa-6 d-flex flex-column justify-space-between h-100">
+              <div>
+                <p class="text-body-1 mb-4">
+                  Cutting-edge solar panels, batteries, and inverters designed for tropical climates.
+                </p>
+                <div class="solution-highlights mb-6">
+                  <p class="text-body-2 mb-2">⚡ High-Efficiency Panels</p>
+                  <p class="text-body-2 mb-2">🔋 Smart Battery Storage</p>
+                  <p class="text-body-2 mb-2">🌪️ Typhoon-Resistant Design</p>
+                </div>
+              </div>
+              <router-link to="/solar-solutions" class="text-decoration-none">
+                <v-btn
+                  color="blue"
+                  size="large"
+                  class="px-6"
+                  style="border-radius: 12px"
+                  block
+                >
+                  <v-icon left>mdi-arrow-right</v-icon>
+                  Explore Solutions
+                </v-btn>
+              </router-link>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
 
     <!-- Energy Challenge Section -->
     <v-row class="mt-16 mb-8">
@@ -335,16 +463,16 @@
               Powering the Philippines' renewable energy future through innovative solar solutions.
             </p>
             <div class="social-links">
-              <v-btn icon variant="outlined" color="white" class="mr-3 social-btn" size="large">
+              <v-btn icon variant="outlined" color="white" class="mr-3 social-btn" size="large" href="#" target="_blank">
                 <v-icon>mdi-facebook</v-icon>
               </v-btn>
-              <v-btn icon variant="outlined" color="white" class="mr-3 social-btn" size="large">
+              <v-btn icon variant="outlined" color="white" class="mr-3 social-btn" size="large" href="#" target="_blank">
                 <v-icon>mdi-twitter</v-icon>
               </v-btn>
-              <v-btn icon variant="outlined" color="white" class="mr-3 social-btn" size="large">
+              <v-btn icon variant="outlined" color="white" class="mr-3 social-btn" size="large" href="https://www.linkedin.com/company/raunlimited/posts/?feedView=all" target="_blank">
                 <v-icon>mdi-linkedin</v-icon>
               </v-btn>
-              <v-btn icon variant="outlined" color="white" class="social-btn" size="large">
+              <v-btn icon variant="outlined" color="white" class="social-btn" size="large" href="#" target="_blank">
                 <v-icon>mdi-instagram</v-icon>
               </v-btn>
             </div>
@@ -710,6 +838,30 @@
   .social-btn {
     margin-bottom: 8px;
   }
+
+  /* CTA cards mobile adjustments */
+  .cta-quote-card {
+    padding: 16px !important;
+  }
+
+  .text-h3 {
+    font-size: 1.5rem !important;
+  }
+
+  .text-h6 {
+    font-size: 1.1rem !important;
+  }
+
+  .service-cta-header,
+  .solution-cta-header {
+    padding: 16px !important;
+  }
+
+  .cta-service-card,
+  .cta-solution-card {
+    height: auto !important;
+    min-height: 450px;
+  }
 }
 
 /* Additional text effects */
@@ -723,5 +875,57 @@
 
 .text-grey-darken-3 {
   font-weight: 600;
+}
+
+/* CTA Sections Styles */
+.cta-quote-card {
+  background: linear-gradient(135deg, #fff7e6 0%, #ffffff 100%);
+  border: 2px solid rgba(255, 165, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.cta-quote-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(255, 165, 0, 0.2);
+}
+
+.cta-service-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid rgba(255, 165, 0, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.cta-service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.cta-solution-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid rgba(30, 144, 255, 0.1);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.cta-solution-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(30, 144, 255, 0.15);
+}
+
+.service-cta-header {
+  background: linear-gradient(135deg, #ff7700 0%, #ffa500 100%);
+}
+
+.solution-cta-header {
+  background: linear-gradient(135deg, #1e90ff 0%, #4682b4 100%);
+}
+
+.benefits-list .v-chip {
+  transition: all 0.3s ease;
+}
+
+.benefits-list .v-chip:hover {
+  transform: scale(1.05);
 }
 </style>

@@ -21,6 +21,7 @@
       <router-link to="/" class="text-decoration-none">
         <v-btn class="text-white btnActions" text>Home</v-btn>
       </router-link>
+      <v-btn class="text-white btnActions" text @click="scrollToAbout">About Us</v-btn>
       <router-link to="/services" class="text-decoration-none">
         <v-btn class="text-white btnActions" text>Services</v-btn>
       </router-link>
@@ -30,7 +31,7 @@
       <router-link to="/quote" class="text-decoration-none">
         <v-btn class="text-white btnActions" text>Quote</v-btn>
       </router-link>
-      <v-btn class="text-white btnActions" text @click="scrollToContact">Contact</v-btn>
+      <v-btn class="text-white btnActions" text @click="scrollToContactDesktop">Contact</v-btn>
     </div>
 
     <!-- Mobile Menu Button -->
@@ -56,6 +57,10 @@
           <v-list-item-title>Home</v-list-item-title>
         </v-list-item>
       </router-link>
+
+      <v-list-item prepend-icon="mdi-information" @click="scrollToAbout" class="mobile-nav-item">
+        <v-list-item-title>About Us</v-list-item-title>
+      </v-list-item>
 
       <router-link to="/services" class="text-decoration-none" @click="drawer = false">
         <v-list-item prepend-icon="mdi-wrench" class="mobile-nav-item">
@@ -97,6 +102,46 @@ const drawer = ref(false)
 
 const navigateToHome = () => {
   router.push('/')
+}
+
+const scrollToAbout = () => {
+  // Se não estiver na home, navegar primeiro
+  if (router.currentRoute.value.path !== '/') {
+    router.push('/').then(() => {
+      // Aguardar um pouco para a página carregar
+      setTimeout(() => {
+        const aboutSection = document.getElementById('about-section')
+        if (aboutSection) {
+          aboutSection.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
+    })
+  } else {
+    const aboutSection = document.getElementById('about-section')
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+  drawer.value = false
+}
+
+const scrollToContactDesktop = () => {
+  // Se não estiver na home, navegar primeiro
+  if (router.currentRoute.value.path !== '/') {
+    router.push('/').then(() => {
+      setTimeout(() => {
+        const footer = document.querySelector('.footer-section')
+        if (footer) {
+          footer.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
+    })
+  } else {
+    const footer = document.querySelector('.footer-section')
+    if (footer) {
+      footer.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
 }
 
 const scrollToContact = () => {
@@ -168,6 +213,15 @@ const scrollToContact = () => {
 .router-link-exact-active .mobile-nav-item {
   background-color: rgba(255, 165, 0, 0.2);
   font-weight: 600;
+}
+
+/* Fix color consistency for all mobile nav items */
+.mobile-nav-item .v-list-item-title {
+  color: #2c3e50 !important;
+}
+
+.mobile-nav-item .v-icon {
+  color: #ff7700 !important;
 }
 
 /* Mobile responsive adjustments */
