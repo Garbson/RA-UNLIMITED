@@ -450,6 +450,98 @@
         </v-card>
       </v-col>
     </v-row>
+
+    <!-- Team Section -->
+    <v-row class="mt-16 mb-8">
+      <v-col cols="12" class="text-center mb-8">
+        <h2 class="display-1 font-weight-bold gradient-title mb-4">
+          Our Team
+        </h2>
+        <p class="subtitle-1 text-grey-darken-1 mx-auto" style="max-width: 700px">
+          Meet the dedicated people leading our mission to energize the Philippines
+        </p>
+      </v-col>
+    </v-row>
+
+    <v-row class="d-flex justify-center" spacing="6">
+      <v-col cols="12" md="6" class="mb-6">
+        <v-card
+          height="900"
+          class="team-card elevation-8 card-hover"
+          style="border-radius: 20px; overflow: hidden"
+        >
+          <div class="team-image-container">
+            <v-img
+              src="/img/paul.png"
+              height="500"
+              cover
+              class="team-image"
+              gradient="to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7)"
+            >
+              <div class="team-overlay d-flex flex-column justify-end">
+                <h3 class="text-h4 font-weight-bold text-white mb-2">Paul Jacobchuk</h3>
+                <p class="text-h6 text-orange-lighten-2 font-weight-medium">Founder & CEO</p>
+              </div>
+            </v-img>
+          </div>
+
+          <v-card-text class="pa-6">
+            <p class="text-body-1 leading-relaxed mb-4">
+              Paul Jacobchuk is the visionary Founder and CEO of RA Unlimited, a trailblazing renewable energy firm
+              dedicated to illuminating the Philippines with sustainable solar solutions.
+            </p>
+            <p class="text-body-1 leading-relaxed mb-4">
+              An energetic electrical engineer with a degree from the University of Washington, Paul brings over
+              a decade of expertise in business development and clean energy innovation.
+            </p>
+            <p class="text-body-1 leading-relaxed">
+              His passion for empowering underserved communities drives RA Unlimited's mission to deliver affordable,
+              reliable electricity through cutting-edge solar microgrids—fostering education, health, and economic
+              stability in remote areas.
+            </p>
+          </v-card-text>
+        </v-card>
+      </v-col>
+
+      <v-col cols="12" md="6" class="mb-6">
+        <v-card
+          height="900"
+          class="team-card elevation-8 card-hover"
+          style="border-radius: 20px; overflow: hidden"
+        >
+          <div class="team-image-container">
+            <v-img
+              src="/img/garbson.png"
+              height="500"
+              cover
+              class="team-image"
+              gradient="to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7)"
+            >
+              <div class="team-overlay d-flex flex-column justify-end">
+                <h3 class="text-h4 font-weight-bold text-white mb-2">Garbson Souza</h3>
+                <p class="text-h6 text-blue-lighten-2 font-weight-medium">Front-End Developer Analyst</p>
+              </div>
+            </v-img>
+          </div>
+
+          <v-card-text class="pa-6">
+            <p class="text-body-1 leading-relaxed mb-4">
+              Garbson Souza serves as a Front-End Developer Analyst at RA Unlimited, where his technical prowess
+              fuels the digital backbone of our renewable energy initiatives.
+            </p>
+            <p class="text-body-1 leading-relaxed mb-4">
+              With more than three years of hands-on experience crafting intuitive web applications, Garbson has
+              honed his skills across international projects spanning four countries, specializing in responsive
+              design and user-centric interfaces.
+            </p>
+            <p class="text-body-1 leading-relaxed">
+              His expertise in modern development tools ensures seamless, accessible platforms that support
+              RA Unlimited's goals of sustainable energy access and community empowerment.
+            </p>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
   </v-container>
 
   <!-- Footer -->
@@ -927,5 +1019,159 @@
 
 .benefits-list .v-chip:hover {
   transform: scale(1.05);
+}
+
+/* Team Section Styles */
+.team-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 1px solid rgba(255, 165, 0, 0.2);
+  transition: all 0.4s ease;
+  overflow: hidden;
+}
+
+.team-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(255, 165, 0, 0.2);
+}
+
+.team-image-container {
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+  background: linear-gradient(135deg, #ff7700 0%, #ffa500 50%, #ffcc80 100%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.team-image {
+  transition: all 0.4s ease;
+  object-fit: contain;
+  object-position: top;
+  max-height: 480px;
+  width: 100%;
+}
+
+.team-card:hover .team-image {
+  transform: scale(1.05);
+}
+
+.team-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  transition: all 0.3s ease;
+  padding: 16px 20px;
+}
+
+.team-card:hover .team-overlay {
+  background: linear-gradient(transparent, rgba(255, 165, 0, 0.9));
+  transform: none;
+}
+
+.leading-relaxed {
+  line-height: 1.8;
+}
+
+/* Team cards for tablets/small laptops */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .team-card {
+    height: auto !important;
+    min-height: 950px;
+  }
+
+  .team-image-container {
+    height: 450px;
+  }
+
+  .team-image {
+    max-height: 430px !important;
+  }
+
+  .team-card .v-card-text {
+    padding: 20px !important;
+  }
+
+  .team-card .text-body-1 {
+    font-size: 0.95rem !important;
+    line-height: 1.7 !important;
+  }
+}
+
+/* Team cards mobile responsive */
+@media (max-width: 768px) {
+  .team-card {
+    height: auto !important;
+    min-height: 700px;
+  }
+
+  .team-card:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+
+  .team-image-container {
+    height: 400px;
+    padding-top: 10px;
+  }
+
+  .team-image {
+    max-height: 380px !important;
+  }
+
+  .team-overlay .text-h4 {
+    font-size: 1.3rem !important;
+  }
+
+  .team-overlay .text-h6 {
+    font-size: 1rem !important;
+  }
+
+  /* Adjust card text for mobile */
+  .team-card .v-card-text {
+    padding: 16px !important;
+  }
+
+  .team-card .text-body-1 {
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Mobile section title adjustments */
+  .team-section .display-1 {
+    font-size: 1.8rem !important;
+    margin-bottom: 16px !important;
+  }
+
+  .team-section .subtitle-1 {
+    font-size: 1rem !important;
+    padding: 0 16px !important;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .team-card {
+    min-height: 650px !important;
+  }
+
+  .team-image-container {
+    height: 350px !important;
+  }
+
+  .team-image {
+    max-height: 330px !important;
+  }
+
+  .team-card .v-card-text {
+    padding: 12px !important;
+  }
+
+  .team-card .text-body-1 {
+    font-size: 0.85rem !important;
+    margin-bottom: 12px !important;
+  }
 }
 </style>

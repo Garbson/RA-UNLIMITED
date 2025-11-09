@@ -27,6 +27,7 @@
         </v-carousel-item>
       </v-carousel>
     </v-card>
+    
 
     <!-- About Us Section -->
     <v-container id="about-section" class="py-16">
