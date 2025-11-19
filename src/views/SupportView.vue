@@ -9,7 +9,10 @@
 
     <v-row class="mb-12">
       <v-col cols="12" md="4" class="mb-6">
-        <v-card class="support-card elevation-6 text-center" style="border-radius: 16px; height: 300px">
+        <v-card
+          class="support-card elevation-6 text-center"
+          style="border-radius: 16px; height: 300px"
+        >
           <v-card-text class="pa-6 d-flex flex-column justify-center h-100">
             <v-icon size="60" color="orange" class="mb-4">mdi-phone</v-icon>
             <h3 class="text-h5 font-weight-bold mb-3">24/7 Hotline</h3>
@@ -17,14 +20,17 @@
               Emergency support and technical assistance available around the clock
             </p>
             <v-btn color="orange" variant="outlined" class="mt-auto">
-              Call Now: +63 2 8123 4567
+              Call Now: +1 831 224 5335
             </v-btn>
           </v-card-text>
         </v-card>
       </v-col>
 
       <v-col cols="12" md="4" class="mb-6">
-        <v-card class="support-card elevation-6 text-center" style="border-radius: 16px; height: 300px">
+        <v-card
+          class="support-card elevation-6 text-center"
+          style="border-radius: 16px; height: 300px"
+        >
           <v-card-text class="pa-6 d-flex flex-column justify-center h-100">
             <v-icon size="60" color="blue" class="mb-4">mdi-email</v-icon>
             <h3 class="text-h5 font-weight-bold mb-3">Email Support</h3>
@@ -39,16 +45,17 @@
       </v-col>
 
       <v-col cols="12" md="4" class="mb-6">
-        <v-card class="support-card elevation-6 text-center" style="border-radius: 16px; height: 300px">
+        <v-card
+          class="support-card elevation-6 text-center"
+          style="border-radius: 16px; height: 300px"
+        >
           <v-card-text class="pa-6 d-flex flex-column justify-center h-100">
             <v-icon size="60" color="green" class="mb-4">mdi-chat</v-icon>
             <h3 class="text-h5 font-weight-bold mb-3">Live Chat</h3>
             <p class="text-body-2 mb-4">
               Chat with our support team during business hours for instant help
             </p>
-            <v-btn color="green" variant="outlined" class="mt-auto">
-              Start Chat
-            </v-btn>
+            <v-btn color="green" variant="outlined" class="mt-auto"> Start Chat </v-btn>
           </v-card-text>
         </v-card>
       </v-col>
@@ -56,15 +63,18 @@
 
     <v-row class="mb-12">
       <v-col cols="12">
-        <h2 class="text-h3 font-weight-bold text-center mb-8 gradient-title">Frequently Asked Questions</h2>
+        <h2 class="text-h3 font-weight-bold text-center mb-8 gradient-title">
+          Frequently Asked Questions
+        </h2>
         <v-expansion-panels variant="accordion" multiple>
           <v-expansion-panel>
             <v-expansion-panel-title>
               <strong>How long does a solar system installation take?</strong>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
-              A typical residential solar installation takes 1-3 days, depending on system size and complexity.
-              Commercial installations may take 1-2 weeks. We'll provide a detailed timeline during your consultation.
+              A typical residential solar installation takes 1-3 days, depending on system size and
+              complexity. Commercial installations may take 1-2 weeks. We'll provide a detailed
+              timeline during your consultation.
             </v-expansion-panel-text>
           </v-expansion-panel>
 
@@ -73,8 +83,9 @@
               <strong>What happens during typhoon season?</strong>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
-              Our solar panels are rated for winds up to 200 km/h and are designed to withstand Philippine weather conditions.
-              We use reinforced mounting systems and provide comprehensive insurance coverage.
+              Our solar panels are rated for winds up to 200 km/h and are designed to withstand
+              Philippine weather conditions. We use reinforced mounting systems and provide
+              comprehensive insurance coverage.
             </v-expansion-panel-text>
           </v-expansion-panel>
 
@@ -83,8 +94,9 @@
               <strong>How much maintenance do solar panels require?</strong>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
-              Solar panels require minimal maintenance. We recommend annual inspections and occasional cleaning.
-              Our maintenance packages include monitoring, cleaning, and performance optimization.
+              Solar panels require minimal maintenance. We recommend annual inspections and
+              occasional cleaning. Our maintenance packages include monitoring, cleaning, and
+              performance optimization.
             </v-expansion-panel-text>
           </v-expansion-panel>
 
@@ -93,8 +105,9 @@
               <strong>Can I sell excess energy back to the grid?</strong>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
-              Yes! Through net metering programs available in most areas of the Philippines, you can sell excess
-              energy back to your utility company, earning credits on your electricity bill.
+              Yes! Through net metering programs available in most areas of the Philippines, you can
+              sell excess energy back to your utility company, earning credits on your electricity
+              bill.
             </v-expansion-panel-text>
           </v-expansion-panel>
 
@@ -103,8 +116,9 @@
               <strong>What financing options are available?</strong>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
-              We offer various financing options including cash payment, installment plans (6-60 months),
-              solar loans, and lease-to-own programs. We'll help you find the best option for your budget.
+              We offer various financing options including cash payment, installment plans (6-60
+              months), solar loans, and lease-to-own programs. We'll help you find the best option
+              for your budget.
             </v-expansion-panel-text>
           </v-expansion-panel>
 
@@ -142,8 +156,7 @@
   </v-container>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
 <style scoped>
 .gradient-title {

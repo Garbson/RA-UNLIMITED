@@ -1,6 +1,5 @@
 <template>
   <v-container class="py-8">
-
     <v-row class="d-flex justify-center" spacing="6">
       <v-col cols="12" md="6" class="mb-6">
         <v-card
@@ -165,17 +164,19 @@
     <!-- Call to Action - Services & Solutions -->
     <v-container class="py-12">
       <div class="text-center mb-10">
-        <h2 class="display-1 font-weight-bold mb-4 gradient-title">
-          Explore Our Solar Solutions
-        </h2>
+        <h2 class="display-1 font-weight-bold mb-4 gradient-title">Explore Our Solar Solutions</h2>
         <p class="subtitle-1 text-grey-darken-1 mx-auto" style="max-width: 700px">
-          From residential homes to large commercial projects, we have the perfect solar solution for every need
+          From residential homes to large commercial projects, we have the perfect solar solution
+          for every need
         </p>
       </div>
 
       <v-row class="d-flex justify-center" spacing="6">
         <v-col cols="12" md="6" class="mb-6">
-          <v-card class="cta-service-card elevation-6 text-center" style="border-radius: 20px; height: 400px">
+          <v-card
+            class="cta-service-card elevation-6 text-center"
+            style="border-radius: 20px; height: 400px"
+          >
             <div class="service-cta-header pa-6">
               <v-icon size="80" color="white" class="mb-4">mdi-wrench</v-icon>
               <h3 class="text-h4 font-weight-bold text-white mb-2">Our Services</h3>
@@ -184,7 +185,8 @@
             <v-card-text class="pa-6 d-flex flex-column justify-space-between h-100">
               <div>
                 <p class="text-body-1 mb-4">
-                  Professional installation, maintenance, and support for all types of solar energy systems.
+                  Professional installation, maintenance, and support for all types of solar energy
+                  systems.
                 </p>
                 <div class="service-highlights mb-6">
                   <p class="text-body-2 mb-2">✓ Residential & Commercial Installation</p>
@@ -193,13 +195,7 @@
                 </div>
               </div>
               <router-link to="/services" class="text-decoration-none">
-                <v-btn
-                  color="orange"
-                  size="large"
-                  class="px-6"
-                  style="border-radius: 12px"
-                  block
-                >
+                <v-btn color="orange" size="large" class="px-6" style="border-radius: 12px" block>
                   <v-icon left>mdi-arrow-right</v-icon>
                   View Services
                 </v-btn>
@@ -209,7 +205,10 @@
         </v-col>
 
         <v-col cols="12" md="6" class="mb-6">
-          <v-card class="cta-solution-card elevation-6 text-center" style="border-radius: 20px; height: 400px">
+          <v-card
+            class="cta-solution-card elevation-6 text-center"
+            style="border-radius: 20px; height: 400px"
+          >
             <div class="solution-cta-header pa-6">
               <v-icon size="80" color="white" class="mb-4">mdi-solar-panel-large</v-icon>
               <h3 class="text-h4 font-weight-bold text-white mb-2">Solar Solutions</h3>
@@ -218,7 +217,8 @@
             <v-card-text class="pa-6 d-flex flex-column justify-space-between h-100">
               <div>
                 <p class="text-body-1 mb-4">
-                  Cutting-edge solar panels, batteries, and inverters designed for tropical climates.
+                  Cutting-edge solar panels, batteries, and inverters designed for tropical
+                  climates.
                 </p>
                 <div class="solution-highlights mb-6">
                   <p class="text-body-2 mb-2">⚡ High-Efficiency Panels</p>
@@ -227,13 +227,7 @@
                 </div>
               </div>
               <router-link to="/solar-solutions" class="text-decoration-none">
-                <v-btn
-                  color="blue"
-                  size="large"
-                  class="px-6"
-                  style="border-radius: 12px"
-                  block
-                >
+                <v-btn color="blue" size="large" class="px-6" style="border-radius: 12px" block>
                   <v-icon left>mdi-arrow-right</v-icon>
                   Explore Solutions
                 </v-btn>
@@ -454,9 +448,7 @@
     <!-- Team Section -->
     <v-row class="mt-16 mb-8">
       <v-col cols="12" class="text-center mb-8">
-        <h2 class="display-1 font-weight-bold gradient-title mb-4">
-          Our Team
-        </h2>
+        <h2 class="display-1 font-weight-bold gradient-title mb-4">Our Team</h2>
         <p class="subtitle-1 text-grey-darken-1 mx-auto" style="max-width: 700px">
           Meet the dedicated people leading our mission to energize the Philippines
         </p>
@@ -487,17 +479,18 @@
 
           <v-card-text class="pa-6">
             <p class="text-body-1 leading-relaxed mb-4">
-              Paul Jacobchuk is the visionary Founder and CEO of RA Unlimited, a trailblazing renewable energy firm
-              dedicated to illuminating the Philippines with sustainable solar solutions.
+              Paul Jacobchuk is the visionary Founder and CEO of RA Unlimited, a trailblazing
+              renewable energy firm dedicated to illuminating the Philippines with sustainable solar
+              solutions.
             </p>
             <p class="text-body-1 leading-relaxed mb-4">
-              An energetic electrical engineer with a degree from the University of Washington, Paul brings over
-              a decade of expertise in business development and clean energy innovation.
+              An energetic electrical engineer with a degree from the University of Washington, Paul
+              brings over a decade of expertise in business development and clean energy innovation.
             </p>
             <p class="text-body-1 leading-relaxed">
-              His passion for empowering underserved communities drives RA Unlimited's mission to deliver affordable,
-              reliable electricity through cutting-edge solar microgrids—fostering education, health, and economic
-              stability in remote areas.
+              His passion for empowering underserved communities drives RA Unlimited's mission to
+              deliver affordable, reliable electricity through cutting-edge solar
+              microgrids—fostering education, health, and economic stability in remote areas.
             </p>
           </v-card-text>
         </v-card>
@@ -519,24 +512,99 @@
             >
               <div class="team-overlay d-flex flex-column justify-end">
                 <h3 class="text-h4 font-weight-bold text-white mb-2">Garbson Souza</h3>
-                <p class="text-h6 text-blue-lighten-2 font-weight-medium">Front-End Developer Analyst</p>
+                <p class="text-h6 text-blue-lighten-2 font-weight-medium">CTO</p>
               </div>
             </v-img>
           </div>
 
           <v-card-text class="pa-6">
             <p class="text-body-1 leading-relaxed mb-4">
-              Garbson Souza serves as a Front-End Developer Analyst at RA Unlimited, where his technical prowess
-              fuels the digital backbone of our renewable energy initiatives.
+              Garbson Souza serves as the Chief Technology Officer (CTO) at RA Unlimited, where his
+              technical prowess fuels the digital backbone of our renewable energy initiatives.
             </p>
             <p class="text-body-1 leading-relaxed mb-4">
-              With more than three years of hands-on experience crafting intuitive web applications, Garbson has
-              honed his skills across international projects spanning four countries, specializing in responsive
-              design and user-centric interfaces.
+              With more than three years of hands-on experience crafting intuitive web applications,
+              Garbson has honed his skills across international projects spanning four countries,
+              specializing in responsive design and user-centric interfaces.
             </p>
             <p class="text-body-1 leading-relaxed">
-              His expertise in modern development tools ensures seamless, accessible platforms that support
-              RA Unlimited's goals of sustainable energy access and community empowerment.
+              His expertise in modern development tools ensures seamless, accessible platforms that
+              support RA Unlimited's goals of sustainable energy access and community empowerment.
+            </p>
+          </v-card-text>
+        </v-card>
+      </v-col>
+      <v-col cols="12" md="6" class="mb-6">
+        <v-card
+          height="900"
+          class="team-card elevation-8 card-hover"
+          style="border-radius: 20px; overflow: hidden"
+        >
+          <div class="team-image-container">
+            <v-img
+              src="/img/Ehloura.png"
+              height="500"
+              cover
+              class="team-image"
+              gradient="to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7)"
+            >
+              <div class="team-overlay d-flex flex-column justify-end">
+                <h3 class="text-h4 font-weight-bold text-white mb-2">Ehloura Jacobchuk</h3>
+                <p class="text-h6 text-blue-lighten-2 font-weight-medium">CO-Founder</p>
+              </div>
+            </v-img>
+          </div>
+
+          <v-card-text class="pa-6">
+            <p class="text-body-1 leading-relaxed mb-4">
+              Ehloura Jacobchuk, a resilient Filipina from the vibrant city of Cagayan de Oro,
+              serves as a Board Advisor for RA Unlimited, bringing her strategic wisdom to guide the
+              agency's growth and impact.
+            </p>
+            <p class="text-body-1 leading-relaxed mb-4">
+              With a career rooted in community leadership and empowerment, she advises on ethical
+              governance, fostering inclusive environments that amplify diverse voices in business.
+              Drawing from her Mindanao heritage, Ehloura champions initiatives for women's
+              advancement and local entrepreneurship, mentoring startups in the Philippines. Her
+              advisory insights have shaped sustainable policies, enhancing organizational
+              resilience. 
+            </p>
+          </v-card-text>
+        </v-card>
+      </v-col>
+      <v-col cols="12" md="6" class="mb-6">
+        <v-card
+          height="900"
+          class="team-card elevation-8 card-hover"
+          style="border-radius: 20px; overflow: hidden"
+        >
+          <div class="team-image-container">
+            <v-img
+              src="/img/del.png"
+              height="500"
+              cover
+              class="team-image delimg"
+              gradient="to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7)"
+            >
+              <div class="team-overlay d-flex flex-column justify-end">
+                <h3 class="text-h4 font-weight-bold text-white mb-2">Adel Macatangay</h3>
+                <p class="text-h6 text-blue-lighten-2 font-weight-medium">COO</p>
+              </div>
+            </v-img>
+          </div>
+
+          <v-card-text class="pa-6">
+            <p class="text-body-1 leading-relaxed mb-4">
+              Dynamic business leader with 20+ years of international experience across the
+              Philippines, United States, the UK, and Australia. Holding a proven track record of
+              driving organizational growth, including leading revenue generation exceeding $650M in
+              under eight months.
+            </p>
+            <p class="text-body-1 leading-relaxed mb-4">
+              Core focus is in strategic planning, client engagement, and cross-functional
+              leadership, with expertise in scaling operations, optimizing performance metrics, and
+              executing impactful marketing strategies. Recognized for building strong
+              executive-level relationships and delivering sustainable business outcomes
             </p>
           </v-card-text>
         </v-card>
@@ -555,16 +623,48 @@
               Powering the Philippines' renewable energy future through innovative solar solutions.
             </p>
             <div class="social-links">
-              <v-btn icon variant="outlined" color="white" class="mr-3 social-btn" size="large" href="#" target="_blank">
+              <v-btn
+                icon
+                variant="outlined"
+                color="white"
+                class="mr-3 social-btn"
+                size="large"
+                href="#"
+                target="_blank"
+              >
                 <v-icon>mdi-facebook</v-icon>
               </v-btn>
-              <v-btn icon variant="outlined" color="white" class="mr-3 social-btn" size="large" href="#" target="_blank">
+              <v-btn
+                icon
+                variant="outlined"
+                color="white"
+                class="mr-3 social-btn"
+                size="large"
+                href="#"
+                target="_blank"
+              >
                 <v-icon>mdi-twitter</v-icon>
               </v-btn>
-              <v-btn icon variant="outlined" color="white" class="mr-3 social-btn" size="large" href="https://www.linkedin.com/company/raunlimited/posts/?feedView=all" target="_blank">
+              <v-btn
+                icon
+                variant="outlined"
+                color="white"
+                class="mr-3 social-btn"
+                size="large"
+                href="https://www.linkedin.com/company/raunlimited/posts/?feedView=all"
+                target="_blank"
+              >
                 <v-icon>mdi-linkedin</v-icon>
               </v-btn>
-              <v-btn icon variant="outlined" color="white" class="social-btn" size="large" href="#" target="_blank">
+              <v-btn
+                icon
+                variant="outlined"
+                color="white"
+                class="social-btn"
+                size="large"
+                href="#"
+                target="_blank"
+              >
                 <v-icon>mdi-instagram</v-icon>
               </v-btn>
             </div>
@@ -586,11 +686,11 @@
             </div>
             <div class="contact-item mb-3 d-flex align-center">
               <v-icon color="orange" class="mr-3">mdi-phone</v-icon>
-              <p class="text-body-2 text-grey-lighten-1 mb-0">+63 2 8123 4567</p>
+              <p class="text-body-2 text-grey-lighten-1 mb-0">+1 831 224 5335</p>
             </div>
             <div class="contact-item mb-3 d-flex align-center">
               <v-icon color="orange" class="mr-3">mdi-email</v-icon>
-              <p class="text-body-2 text-grey-lighten-1 mb-0">info@raunlimited.ph</p>
+              <p class="text-body-2 text-grey-lighten-1 mb-0">info@raunlimited.com</p>
             </div>
           </div>
         </v-col>
@@ -652,10 +752,14 @@
         </v-col>
         <v-col cols="12" md="6" class="text-md-right">
           <div class="footer-legal">
-            <v-btn variant="text" color="grey-lighten-1" size="small" class="mr-4">
-              Privacy Policy
-            </v-btn>
-            <v-btn variant="text" color="grey-lighten-1" size="small"> Terms of Service </v-btn>
+            <router-link to="/privacy-policy" class="text-decoration-none">
+              <v-btn variant="text" color="grey-lighten-1" size="small" class="mr-4">
+                Privacy Policy
+              </v-btn>
+            </router-link>
+            <router-link to="/terms-of-service" class="text-decoration-none">
+              <v-btn variant="text" color="grey-lighten-1" size="small">Terms of Service</v-btn>
+            </router-link>
           </div>
         </v-col>
       </v-row>
@@ -1045,12 +1149,17 @@
   padding-top: 20px;
 }
 
-.team-image {
-  transition: all 0.4s ease;
-  object-fit: contain;
+.delimg {
+  object-fit: cover;
   object-position: top;
-  max-height: 480px;
+}
+
+.team-image {
+  object-fit: cover; /* changed from contain */
+  object-position: top center;
   width: 100%;
+  height: 500px;
+  transition: all 0.4s ease;
 }
 
 .team-card:hover .team-image {
@@ -1173,5 +1282,24 @@
     font-size: 0.85rem !important;
     margin-bottom: 12px !important;
   }
+}
+
+/* Global top focus for cover images */
+:deep(.v-img--cover img) {
+  object-position: top center;
+}
+
+/* Ensure team images actually crop from top */
+.team-image {
+  object-fit: cover; /* changed from contain */
+  object-position: top center;
+  width: 100%;
+  height: 500px;
+  transition: all 0.4s ease;
+}
+
+/* Keep special override for del image if needed */
+.delimg {
+  object-position: top center;
 }
 </style>
