@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import EditableText from '../components/EditableText.vue'
 import PageHeader from '../components/PageHeader.vue'
+import { api } from '../api/client.js'
 
 const form = ref({
   firstName: '',
@@ -52,12 +53,25 @@ const isValid = computed(() => {
 async function submit() {
   if (!isValid.value) return
   submitting.value = true
+  error.value = null
   try {
-    // TODO: integrate with backend endpoint (POST /api/quote)
-    await new Promise((r) => setTimeout(r, 800))
+    await api('/api/quotes', {
+      method: 'POST',
+      body: {
+        firstName: form.value.firstName.trim(),
+        lastName: form.value.lastName.trim(),
+        email: form.value.email.trim(),
+        phone: form.value.phone.trim(),
+        address: form.value.address.trim(),
+        propertyType: form.value.propertyType,
+        monthlyBill: Number(form.value.monthlyBill),
+        systemSize: form.value.systemSize || null,
+        notes: form.value.notes.trim() || null,
+      },
+    })
     submitted.value = true
   } catch (e) {
-    error.value = e.message
+    error.value = e.message || 'Something went wrong. Please try again.'
   } finally {
     submitting.value = false
   }

@@ -8,6 +8,7 @@ import SupportView from '../views/SupportView.vue'
 import PrivacyPolicyView from '../views/PrivacyPolicyView.vue'
 import TermsOfServiceView from '../views/TermsOfServiceView.vue'
 import LoginView from '../views/LoginView.vue'
+import QuotesAdminView from '../views/QuotesAdminView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +22,7 @@ const router = createRouter({
     { path: '/privacy-policy', name: 'privacy-policy', component: PrivacyPolicyView },
     { path: '/terms-of-service', name: 'terms-of-service', component: TermsOfServiceView },
     { path: '/login', name: 'login', component: LoginView, meta: { bare: true } },
+    { path: '/quotes', name: 'quotes', component: QuotesAdminView, meta: { bare: true } },
   ],
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) return savedPosition

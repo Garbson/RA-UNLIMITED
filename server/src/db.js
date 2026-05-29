@@ -22,6 +22,27 @@ db.exec(`
     value TEXT NOT NULL,
     updated_at TEXT NOT NULL DEFAULT (datetime('now'))
   );
+
+  CREATE TABLE IF NOT EXISTS quotes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    address TEXT NOT NULL,
+    property_type TEXT NOT NULL,
+    monthly_bill REAL NOT NULL,
+    system_size TEXT,
+    notes TEXT,
+    status TEXT NOT NULL DEFAULT 'new',
+    user_agent TEXT,
+    ip TEXT,
+    created_at TEXT NOT NULL DEFAULT (datetime('now')),
+    updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+  );
+
+  CREATE INDEX IF NOT EXISTS idx_quotes_status ON quotes(status);
+  CREATE INDEX IF NOT EXISTS idx_quotes_created_at ON quotes(created_at DESC);
 `)
 
 export function ensureAdmin() {
