@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken'
-
 const SECRET = process.env.JWT_SECRET || 'dev-secret-change-me'
 const EXPIRES = '7d'
 
