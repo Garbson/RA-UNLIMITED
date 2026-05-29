@@ -1,0 +1,35 @@
+services:
+  ra-api:
+    build: ./server
+    container_name: ra-api
+    restart: unless-stopped
+    environment:
+      - PORT=3001
+      - NODE_ENV=production
+      - DB_PATH=/data/ra.sqlite
+      - JWT_SECRET=${JWT_SECRET:?set JWT_SECRET in .env}
+      - ADMIN_EMAIL=${ADMIN_EMAIL:?set ADMIN_EMAIL in .env}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:?set ADMIN_PASSWORD in .env}
+      - CORS_ORIGIN=${CORS_ORIGIN:-http://localhost}
+    volumes:
+      - ra_data:/data
+    networks:
+      - ra_net
+
+  ra-web:
+    build: .
+    container_name: ra-web
+    restart: unless-stopped
+    depends_on:
+      - ra-api
+    ports:
+      - "8088:80"
+    networks:
+      - ra_net
+
+volumes:
+  ra_data:
+
+networks:
+  ra_net:
+    driver: bridge

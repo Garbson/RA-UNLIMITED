@@ -1,378 +1,537 @@
+<script setup>
+import { ref, onMounted, onUnmounted } from 'vue'
+import AboutView from './aboutView.vue'
+import EditableText from '../components/EditableText.vue'
+
+const slides = [
+  { src: '/img/sun.jpg', keyPrefix: 'hero.slide1' },
+  { src: '/img/filipinas02.jpg', keyPrefix: 'hero.slide2' },
+  { src: '/img/filipinas04.jpg', keyPrefix: 'hero.slide3' },
+  { src: '/img/placaSolar.jpg', keyPrefix: 'hero.slide4' },
+]
+
+const defaultSlideHeadlines = [
+  'Light reaches\neveryone.',
+  'Energy that\nbelongs to the land.',
+  'A home, with\nthe lights on.',
+  'Sun, stored\nas hope.',
+]
+
+const active = ref(0)
+let timer
+
+function next() {
+  active.value = (active.value + 1) % slides.length
+}
+
+onMounted(() => {
+  timer = setInterval(next, 6000)
+})
+onUnmounted(() => clearInterval(timer))
+</script>
+
 <template>
-  <div>
-    <!-- Hero Section -->
-    <v-card class="w-100">
-      <v-carousel
-        cycle="true"
-        :hide-delimiters="true"
-        :show-arrows="false"
-        :hide-delimiter-background="true"
-        :height="$vuetify.display.mobile ? '500' : '650'"
-      >
-        <v-carousel-item
-          v-for="(item, i) in carouselImg"
-          :key="i"
-          :src="item.src"
-          cover
-          gradient=""
-        >
-          <div class="h-100 d-flex text-overlay" :class="item.position">
-            <div class="text-container">
-              <h2 class="ReacheForTheSun carousel-text text-white"
-                  :class="[$vuetify.display.mobile ? 'text-h5' : 'text-h4', item.alignment]">
-                {{ item.text }}
-              </h2>
+  <div class="home">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-media">
+        <TransitionGroup name="hero-fade" tag="div" class="hero-stack">
+          <img
+            v-for="(s, i) in slides"
+            v-show="i === active"
+            :key="s.src"
+            :src="s.src"
+            alt=""
+            class="hero-img"
+          />
+        </TransitionGroup>
+        <div class="hero-vignette" />
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-grid">
+          <div class="hero-text">
+            <div class="hero-eyebrow eyebrow">
+              <EditableText content-key="hero.eyebrow" default="Ra Unlimited — Philippines" />
+            </div>
+            <h1 class="hero-title display-title">
+              <EditableText
+                content-key="hero.title"
+                :default="'Reaching for the sun,\nso families can find\ntheir way home.'"
+                tag="span"
+                multiline
+              />
+            </h1>
+            <p class="hero-lead lead">
+              <EditableText
+                content-key="hero.lead"
+                default="We build sustainable solar energy in the places where normal hasn't had a chance — not cities or villages, but homes for families to grow."
+                tag="span"
+                multiline
+              />
+            </p>
+            <div class="hero-cta">
+              <router-link to="/quote" class="btn-solid">
+                <EditableText content-key="hero.cta.primary" default="Request a project" tag="span" />
+                <span aria-hidden>→</span>
+              </router-link>
+              <router-link to="/solar-solutions" class="btn-ghost">
+                <EditableText content-key="hero.cta.secondary" default="See our work" tag="span" />
+              </router-link>
             </div>
           </div>
-        </v-carousel-item>
-      </v-carousel>
-    </v-card>
-    
 
-    <!-- About Us Section -->
-    <v-container id="about-section" class="py-16">
-      <v-row class="d-flex justify-center">
-        <v-col cols="12" lg="10" xl="8">
-          <div class="text-center mb-10">
-            <h2 class="display-1 font-weight-bold mb-6 gradient-title">About Us</h2>
-          </div>
-
-          <v-card class="about-us-card pa-8 elevation-4" style="border-radius: 20px">
-            <div class="about-text">
-              <p class="text-h6 mb-6 text-center font-weight-light leading-relaxed">
-                We're not trying to recreate the wheel. We're not trying to recreate the world.
-                We're trying to create normalcy in places where normal hasn't had a chance.
-              </p>
-
-              <p class="text-body-1 mb-4 leading-relaxed">
-                What is "normal". Normal is dinner with family. Dancing with family. Karaoke and hanging out with family.
-                We're not building cities, or villages. We're building places for families to have the opportunities
-                that are the foundation of family.
-              </p>
-
-              <p class="text-body-1 mb-4 leading-relaxed">
-                Without family. Things tend to crumble. Without hope, things start to burn. Ra Unlimited doesn't hope
-                for a better future in the Philippines. Ra Unlimited knows a way to help everyone progress and find
-                their way back home.
-              </p>
-
-              <p class="text-body-1 mb-6 leading-relaxed">
-                Home is in the countryside, beside a warm fire, laughing with friends, and not worrying about anything.
-              </p>
-
-              <div class="text-center">
-                <p class="text-h5 font-weight-bold gradient-text-orange">
-                  Ra Unlimited is here to help you find your way home.
-                </p>
-              </div>
+          <div class="hero-aside">
+            <div class="aside-headline">
+              <EditableText
+                :content-key="`${slides[active].keyPrefix}.title`"
+                :default="defaultSlideHeadlines[active]"
+                tag="span"
+                multiline
+              />
             </div>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
+            <div class="aside-progress">
+              <button
+                v-for="(s, i) in slides"
+                :key="i"
+                :class="['dot', { active: i === active }]"
+                @click="active = i"
+                :aria-label="`Slide ${i + 1}`"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <!-- Main About Section with all content -->
+    <!-- INTRO -->
+    <section id="about-section" class="section intro">
+      <div class="container">
+        <div class="intro-eyebrow eyebrow">
+          <EditableText content-key="intro.eyebrow" default="Our mission" />
+        </div>
+        <h2 class="intro-title display-title">
+          <EditableText
+            content-key="intro.title"
+            :default="`We're not recreating\nthe world. We're creating\n*normalcy* where normal\nhasn't had a chance.`"
+            tag="span"
+            multiline
+          />
+        </h2>
+      </div>
+
+      <div class="container intro-body">
+        <div class="intro-col">
+          <p class="lead">
+            <EditableText
+              content-key="intro.lead1"
+              default="What is normal? Dinner with family. Dancing in the kitchen. Karaoke until midnight. We're not building cities or villages — we're building places for families to have the opportunities that are the foundation of family."
+              tag="span"
+              multiline
+            />
+          </p>
+        </div>
+        <div class="intro-col">
+          <p class="body-text">
+            <EditableText
+              content-key="intro.lead2"
+              default="Without family, things tend to crumble. Without hope, things start to burn. Ra Unlimited doesn't hope for a better future in the Philippines — we know a way to help everyone progress, and find their way home."
+              tag="span"
+              multiline
+            />
+          </p>
+          <p class="body-text intro-quote">
+            <EditableText
+              content-key="intro.quote"
+              default="Home is in the countryside, beside a warm fire, laughing with friends, and not worrying about anything."
+              tag="span"
+              multiline
+            />
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT STRIP -->
+    <section class="section-tight impact">
+      <div class="container impact-grid">
+        <div class="impact-item">
+          <div class="impact-num">
+            <EditableText content-key="impact.1.value" default="1,200+" />
+          </div>
+          <div class="impact-label">
+            <EditableText content-key="impact.1.label" default="Lives reached" />
+          </div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-num">
+            <EditableText content-key="impact.2.value" default="38" />
+          </div>
+          <div class="impact-label">
+            <EditableText content-key="impact.2.label" default="Communities served" />
+          </div>
+        </div>
+        <div class="impact-item">
+          <div class="impact-num">
+            <EditableText content-key="impact.3.value" default="100%" />
+          </div>
+          <div class="impact-label">
+            <EditableText content-key="impact.3.label" default="Clean, renewable energy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT WE DO -->
+    <section class="section what-we-do">
+      <div class="container what-grid">
+        <div class="what-cell what-quote">
+          <div class="eyebrow">
+            <EditableText content-key="what.eyebrow" default="What we do" />
+          </div>
+          <h3 class="display-title smaller">
+            <EditableText
+              content-key="what.title"
+              :default="'Sustainable energy,\nbuilt with the people\nwho use it.'"
+              tag="span"
+              multiline
+            />
+          </h3>
+        </div>
+
+        <router-link to="/services" class="what-cell card-link">
+          <div class="card-img" style="background-image: url('/img/filipinas03.jpg')" />
+          <div class="card-body">
+            <div class="card-label">
+              <EditableText content-key="card.services.label" default="01 · Services" />
+            </div>
+            <div class="card-title">
+              <EditableText
+                content-key="card.services.title"
+                default="Installation, maintenance, training."
+              />
+            </div>
+            <div class="card-arrow">→</div>
+          </div>
+        </router-link>
+
+        <router-link to="/solar-solutions" class="what-cell card-link">
+          <div class="card-img" style="background-image: url('/img/placaSolar.jpg')" />
+          <div class="card-body">
+            <div class="card-label">
+              <EditableText content-key="card.solutions.label" default="02 · Solutions" />
+            </div>
+            <div class="card-title">
+              <EditableText
+                content-key="card.solutions.title"
+                default="Custom solar systems for homes, schools and farms."
+              />
+            </div>
+            <div class="card-arrow">→</div>
+          </div>
+        </router-link>
+
+        <router-link to="/quote" class="what-cell card-link card-feature">
+          <div class="card-img" style="background-image: url('/img/filipinas06.jpg')" />
+          <div class="card-body">
+            <div class="card-label">
+              <EditableText content-key="card.quote.label" default="03 · Get involved" />
+            </div>
+            <div class="card-title">
+              <EditableText
+                content-key="card.quote.title"
+                default="Tell us about your community — we'll build a plan together."
+              />
+            </div>
+            <div class="card-arrow">→</div>
+          </div>
+        </router-link>
+      </div>
+    </section>
+
+    <!-- DEEPER ABOUT -->
     <AboutView />
   </div>
 </template>
-<script setup>
-import AboutView from './aboutView.vue';
 
-const carouselImg = [
-  {
-    src: '/img/sun.jpg',
-    text: 'Reach for the Sun',
-    position: 'justify-center align-center',
-    alignment: 'text-center'
-  },
-  {
-    src: '/img/filipinas02.jpg',
-    text: 'creating sustainable energy',
-    position: 'justify-start align-end',
-    alignment: 'text-left'
-  },
-  {
-    src: '/img/filipinas03.jpg',
-    text: 'lift people out of poverty',
-    position: 'justify-end align-start',
-    alignment: 'text-right'
-  },
-  {
-    src: '/img/filipinas04.jpg',
-    text: 'Energy for All Communities',
-    position: 'justify-start align-start',
-    alignment: 'text-left'
-  },
-  {
-    src: '/img/placaSolar.jpg',
-    text: 'Empowering Communities, One Solar Panel at a Time',
-    position: 'justify-end align-end',
-    alignment: 'text-right'
-  },
-  {
-    src: '/img/filipinas06.jpg',
-    text: "Building Tomorrow's Energy Today",
-    position: 'justify-center align-start',
-    alignment: 'text-center'
-  },
-]
-</script>
 <style scoped>
-.ReacheForTheSun {
-  font-family: 'Arimo', sans-serif;
-}
+.home { color: var(--color-ink); }
 
-.gradient-text {
-  background: linear-gradient(90deg, #edebeb, #ff7700);
-  -webkit-background-clip: text; /* Safari/Chrome */
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-}
-
-/* About Us Section Styles */
-.gradient-title {
-  background: linear-gradient(135deg, #ff7700, #ffa500, #dcdada);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.gradient-text-orange {
-  background: linear-gradient(135deg, #ff7700, #ffa500);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-}
-
-.about-us-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 1px solid rgba(255, 165, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.about-us-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 15px 30px rgba(255, 165, 0, 0.1);
-}
-
-.about-text p {
-  line-height: 1.7;
-  color: #2c3e50;
-}
-
-.leading-relaxed {
-  line-height: 1.8;
-}
-
-/* Mobile responsive for hero text */
-@media (max-width: 768px) {
-  .ReacheForTheSun {
-    line-height: 1.2;
-  }
-
-  .gradient-text {
-    font-size: 1.8rem !important;
-  }
-
-  .about-us-card {
-    padding: 16px !important;
-  }
-
-  .display-1 {
-    font-size: 1.8rem !important;
-  }
-
-  .text-h6 {
-    font-size: 1.2rem !important;
-  }
-
-  .text-h5 {
-    font-size: 1.1rem !important;
-  }
-}
-
-/* CTA Sections Styles */
-.cta-quote-card {
-  background: linear-gradient(135deg, #fff7e6 0%, #ffffff 100%);
-  border: 2px solid rgba(255, 165, 0, 0.2);
-  transition: all 0.3s ease;
-}
-
-.cta-quote-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(255, 165, 0, 0.2);
-}
-
-.cta-service-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 1px solid rgba(255, 165, 0, 0.1);
-  transition: all 0.3s ease;
+/* ============ HERO ============ */
+.hero {
+  position: relative;
+  min-height: clamp(640px, 96vh, 880px);
   overflow: hidden;
+  background: var(--color-moss-deep);
 }
-
-.cta-service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+.hero-media {
+  position: absolute;
+  inset: 0;
 }
-
-.cta-solution-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 1px solid rgba(30, 144, 255, 0.1);
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.cta-solution-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(30, 144, 255, 0.15);
-}
-
-.service-cta-header {
-  background: linear-gradient(135deg, #ff7700 0%, #ffa500 100%);
-}
-
-.solution-cta-header {
-  background: linear-gradient(135deg, #1e90ff 0%, #4682b4 100%);
-}
-
-.benefits-list .v-chip {
-  transition: all 0.3s ease;
-}
-
-.benefits-list .v-chip:hover {
-  transform: scale(1.05);
-}
-
-/* Mobile responsive for CTA sections */
-@media (max-width: 768px) {
-  .cta-quote-card {
-    padding: 16px !important;
-  }
-
-  .text-h3 {
-    font-size: 1.5rem !important;
-  }
-
-  .text-h6 {
-    font-size: 1.1rem !important;
-  }
-
-  .service-cta-header,
-  .solution-cta-header {
-    padding: 16px !important;
-  }
-
-  .cta-service-card,
-  .cta-solution-card {
-    height: auto !important;
-    min-height: 350px;
-  }
-}
-
-/* Carousel text positioning and readability */
-.text-overlay {
+.hero-stack { position: absolute; inset: 0; }
+.hero-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  position: relative;
+  object-fit: cover;
+  will-change: opacity;
 }
-
-.text-container {
-  background: linear-gradient(135deg, rgba(255, 165, 0, 0.85) 0%, rgba(255, 165, 0, 0.95) 50%, rgba(255, 165, 0, 0.8) 100%);
-  backdrop-filter: blur(8px);
-  border-radius: 16px;
-  padding: 24px 32px;
-  margin: 32px;
-  border: 2px solid rgba(255, 165, 0, 0.6);
-  box-shadow:
-    0 8px 32px rgba(255, 165, 0, 0.3),
-    0 4px 12px rgba(255, 165, 0, 0.2),
-    inset 0 2px 4px rgba(255, 255, 255, 0.2),
-    inset 0 -2px 4px rgba(255, 165, 0, 0.3);
-  max-width: 600px;
-  animation: fadeInUp 0.8s ease-out, gentleBreathing 4s ease-in-out infinite;
-  position: relative;
-  overflow: hidden;
+.hero-fade-enter-active,
+.hero-fade-leave-active {
+  transition: opacity 1.4s ease;
 }
-
-.text-container::before {
-  content: '';
+.hero-fade-enter-from,
+.hero-fade-leave-to {
+  opacity: 0;
+}
+.hero-vignette {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(ellipse at center, transparent 60%, rgba(255, 119, 0, 0.2) 100%);
-  pointer-events: none;
-  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(42, 42, 36, 0.15) 0%, rgba(42, 42, 36, 0.55) 70%, rgba(42, 42, 36, 0.85) 100%),
+    linear-gradient(90deg, rgba(58, 79, 58, 0.45) 0%, rgba(58, 79, 58, 0) 60%);
 }
-
-@keyframes gentleBreathing {
-  0% {
-    transform: scale(1);
-    box-shadow:
-      0 0 15px rgba(255, 165, 0, 0.4),
-      0 8px 32px rgba(255, 165, 0, 0.3),
-      0 4px 12px rgba(255, 165, 0, 0.2),
-      inset 0 2px 4px rgba(255, 255, 255, 0.2),
-      inset 0 -2px 4px rgba(255, 165, 0, 0.3);
-  }
-  50% {
-    transform: scale(1.015);
-    box-shadow:
-      0 0 25px rgba(255, 165, 0, 0.6),
-      0 12px 40px rgba(255, 165, 0, 0.4),
-      0 6px 16px rgba(255, 165, 0, 0.3),
-      inset 0 3px 6px rgba(255, 255, 255, 0.25),
-      inset 0 -3px 6px rgba(255, 165, 0, 0.4);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow:
-      0 0 15px rgba(255, 165, 0, 0.4),
-      0 8px 32px rgba(255, 165, 0, 0.3),
-      0 4px 12px rgba(255, 165, 0, 0.2),
-      inset 0 2px 4px rgba(255, 255, 255, 0.2),
-      inset 0 -2px 4px rgba(255, 165, 0, 0.3);
-  }
-}
-
-.carousel-text {
-  color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-  line-height: 1.3;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+.hero-content {
   position: relative;
-  z-index: 3;
+  z-index: 2;
+  min-height: clamp(640px, 96vh, 880px);
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(40px, 8vh, 96px) 0 clamp(40px, 6vh, 80px);
+}
+.hero-grid {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 64px;
+  align-items: end;
+}
+.hero-text { color: #fff; }
+.hero-eyebrow { color: var(--color-sun); margin-bottom: 24px; }
+.hero-title {
+  color: #fff;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  white-space: pre-line;
+  margin-bottom: 28px;
+}
+.hero-title :deep(em) { color: var(--color-sun); font-style: italic; font-weight: 300; }
+.hero-lead {
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 560px;
+  margin-bottom: 36px;
+}
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-solid,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: transform 0.15s, background 0.15s, color 0.15s;
+}
+.btn-solid {
+  background: var(--color-sun);
+  color: var(--color-ink);
+}
+.btn-solid:hover { transform: translateY(-1px); background: #ffce85; }
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+}
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.16); }
+
+.hero-aside { color: #fff; }
+.aside-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 1.6vw, 1.5rem);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: rgba(255, 255, 255, 0.9);
+  padding-left: 24px;
+  border-left: 1px solid rgba(255, 255, 255, 0.3);
+  white-space: pre-line;
+  min-height: 90px;
+}
+.aside-progress {
+  display: flex;
+  gap: 10px;
+  margin-top: 32px;
+  padding-left: 24px;
+}
+.dot {
+  width: 36px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s, width 0.25s;
+}
+.dot.active { background: var(--color-sun); width: 56px; }
+
+/* ============ INTRO ============ */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+.intro { background: var(--color-cream); }
+.intro-eyebrow { margin-bottom: 24px; }
+.intro-title {
+  font-size: clamp(2rem, 5vw, 4.2rem);
+  max-width: 1000px;
+  margin-bottom: 64px;
+  white-space: pre-line;
+}
+.intro-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.intro-col { max-width: 560px; }
+.intro-quote {
+  margin-top: 28px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--color-moss);
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* ============ IMPACT ============ */
+.impact {
+  background: var(--color-cream-deep);
+  border-top: 1px solid rgba(58, 79, 58, 0.08);
+  border-bottom: 1px solid rgba(58, 79, 58, 0.08);
+}
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+}
+.impact-item { text-align: center; }
+.impact-num {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: var(--color-moss);
+  line-height: 1;
+}
+.impact-label {
+  margin-top: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-ink-soft);
 }
 
-/* Mobile carousel adjustments */
-@media (max-width: 768px) {
-  .text-container {
-    padding: 16px 20px;
-    margin: 16px;
-    max-width: 90%;
-    border-radius: 12px;
-  }
+/* ============ WHAT WE DO ============ */
+.what-we-do { background: var(--color-cream); }
+.what-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto auto;
+  gap: 24px;
+}
+.what-quote {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  padding: 32px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 32px;
+}
+.display-title.smaller {
+  font-size: clamp(1.75rem, 3vw, 2.6rem);
+  color: var(--color-moss);
+  white-space: pre-line;
+}
+.card-link {
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--color-ink);
+  display: flex;
+  flex-direction: column;
+  min-height: 360px;
+  border: 1px solid rgba(58, 79, 58, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card-link:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+.card-img {
+  background-size: cover;
+  background-position: center;
+  aspect-ratio: 4/3;
+  border-bottom: 1px solid rgba(58, 79, 58, 0.08);
+}
+.card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+.card-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-terracotta);
+}
+.card-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--color-moss);
+  flex: 1;
+}
+.card-arrow {
+  align-self: flex-end;
+  font-size: 20px;
+  color: var(--color-moss);
+  transition: transform 0.2s;
+}
+.card-link:hover .card-arrow { transform: translateX(4px); }
+.card-feature { grid-column: 2 / 4; }
+.card-feature .card-img { aspect-ratio: 5/2; }
 
-  .carousel-text {
-    font-size: 1.2rem !important;
-    line-height: 1.2;
-  }
+/* ============ RESPONSIVE ============ */
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  .hero-aside { display: none; }
+  .intro-body { grid-template-columns: 1fr; gap: 32px; }
+  .impact-grid { grid-template-columns: 1fr; gap: 32px; }
+  .what-grid { grid-template-columns: 1fr; }
+  .what-quote { grid-column: auto; grid-row: auto; padding: 0 0 16px; }
+  .card-feature { grid-column: auto; }
+  .container { padding: 0 24px; }
+}
+@media (max-width: 600px) {
+  .hero { min-height: 88vh; }
+  .hero-title { font-size: 2.4rem; }
+  .btn-solid, .btn-ghost { width: 100%; justify-content: center; }
 }
 </style>

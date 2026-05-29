@@ -1,171 +1,8 @@
-<template>
-  <v-container class="py-8">
-    <div class="text-center mb-10">
-      <h1 class="display-2 font-weight-bold mb-4 gradient-title">Get a Quote</h1>
-      <p class="subtitle-1 text-grey-darken-1 mx-auto" style="max-width: 600px">
-        Get your personalized solar energy solution quote in just a few simple steps
-      </p>
-    </div>
-
-    <v-row class="d-flex justify-center">
-      <v-col cols="12" md="8" lg="6" class="px-4">
-        <v-card class="quote-card elevation-8" style="border-radius: 20px"
-                :class="$vuetify.display.mobile ? 'pa-4' : 'pa-8'">
-          <v-form v-model="valid">
-            <v-row>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  v-model="form.firstName"
-                  label="First Name"
-                  variant="outlined"
-                  :rules="nameRules"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  v-model="form.lastName"
-                  label="Last Name"
-                  variant="outlined"
-                  :rules="nameRules"
-                  required
-                ></v-text-field>
-              </v-col>
-            </v-row>
-
-            <v-row>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  v-model="form.email"
-                  label="Email"
-                  variant="outlined"
-                  :rules="emailRules"
-                  required
-                ></v-text-field>
-              </v-col>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  v-model="form.phone"
-                  label="Phone Number"
-                  variant="outlined"
-                  :rules="phoneRules"
-                  required
-                ></v-text-field>
-              </v-col>
-            </v-row>
-
-            <v-row>
-              <v-col cols="12">
-                <v-text-field
-                  v-model="form.address"
-                  label="Property Address"
-                  variant="outlined"
-                  :rules="addressRules"
-                  required
-                ></v-text-field>
-              </v-col>
-            </v-row>
-
-            <v-row>
-              <v-col cols="12" md="6">
-                <v-select
-                  v-model="form.propertyType"
-                  :items="propertyTypes"
-                  label="Property Type"
-                  variant="outlined"
-                  required
-                ></v-select>
-              </v-col>
-              <v-col cols="12" md="6">
-                <v-text-field
-                  v-model="form.monthlyBill"
-                  label="Monthly Electric Bill (₱)"
-                  variant="outlined"
-                  type="number"
-                  :rules="billRules"
-                  required
-                ></v-text-field>
-              </v-col>
-            </v-row>
-
-            <v-row>
-              <v-col cols="12">
-                <v-select
-                  v-model="form.systemSize"
-                  :items="systemSizes"
-                  label="Estimated System Size"
-                  variant="outlined"
-                  required
-                ></v-select>
-              </v-col>
-            </v-row>
-
-            <v-row>
-              <v-col cols="12">
-                <v-textarea
-                  v-model="form.additionalInfo"
-                  label="Additional Information (Optional)"
-                  variant="outlined"
-                  rows="3"
-                ></v-textarea>
-              </v-col>
-            </v-row>
-
-            <v-row>
-              <v-col cols="12" class="text-center">
-                <v-btn
-                  color="orange"
-                  :size="$vuetify.display.mobile ? 'default' : 'large'"
-                  style="border-radius: 12px"
-                  :class="$vuetify.display.mobile ? 'px-6 py-2' : 'px-8 py-3'"
-                  :disabled="!valid"
-                  @click="submitQuote"
-                  block
-                >
-                  <v-icon left>mdi-calculator</v-icon>
-                  Get My Quote
-                </v-btn>
-              </v-col>
-            </v-row>
-          </v-form>
-        </v-card>
-      </v-col>
-    </v-row>
-
-    <v-row class="mt-12">
-      <v-col cols="12" class="text-center">
-        <h3 class="text-h4 font-weight-bold mb-6">Why Get a Quote From Us?</h3>
-        <v-row>
-          <v-col cols="12" md="3" class="text-center">
-            <v-icon size="50" color="orange" class="mb-3">mdi-lightning-bolt</v-icon>
-            <h4 class="text-h6 font-weight-bold mb-2">Fast Response</h4>
-            <p class="text-body-2">Get your quote within 24 hours</p>
-          </v-col>
-          <v-col cols="12" md="3" class="text-center">
-            <v-icon size="50" color="blue" class="mb-3">mdi-account-tie</v-icon>
-            <h4 class="text-h6 font-weight-bold mb-2">Expert Consultation</h4>
-            <p class="text-body-2">Free consultation with solar experts</p>
-          </v-col>
-          <v-col cols="12" md="3" class="text-center">
-            <v-icon size="50" color="green" class="mb-3">mdi-cash-multiple</v-icon>
-            <h4 class="text-h6 font-weight-bold mb-2">Competitive Pricing</h4>
-            <p class="text-body-2">Best value for your investment</p>
-          </v-col>
-          <v-col cols="12" md="3" class="text-center">
-            <v-icon size="50" color="purple" class="mb-3">mdi-shield-check</v-icon>
-            <h4 class="text-h6 font-weight-bold mb-2">No Obligation</h4>
-            <p class="text-body-2">Free quote with no strings attached</p>
-          </v-col>
-        </v-row>
-      </v-col>
-    </v-row>
-  </v-container>
-</template>
-
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import EditableText from '../components/EditableText.vue'
+import PageHeader from '../components/PageHeader.vue'
 
-const valid = ref(false)
 const form = ref({
   firstName: '',
   lastName: '',
@@ -175,69 +12,300 @@ const form = ref({
   propertyType: '',
   monthlyBill: '',
   systemSize: '',
-  additionalInfo: ''
+  notes: '',
 })
 
-const nameRules = [
-  v => !!v || 'Name is required',
-  v => (v && v.length >= 2) || 'Name must be at least 2 characters'
-]
-
-const emailRules = [
-  v => !!v || 'E-mail is required',
-  v => /.+@.+\..+/.test(v) || 'E-mail must be valid'
-]
-
-const phoneRules = [
-  v => !!v || 'Phone number is required',
-  v => /^[0-9+\-\s()]+$/.test(v) || 'Phone number must be valid'
-]
-
-const addressRules = [
-  v => !!v || 'Address is required'
-]
-
-const billRules = [
-  v => !!v || 'Monthly bill is required',
-  v => v > 0 || 'Monthly bill must be greater than 0'
-]
+const submitted = ref(false)
+const submitting = ref(false)
+const error = ref(null)
 
 const propertyTypes = [
-  'Residential - Single Family Home',
-  'Residential - Condominium',
-  'Commercial - Small Business',
-  'Commercial - Office Building',
+  'Residential — single family',
+  'Residential — condominium',
+  'Commercial — small business',
+  'Commercial — office building',
   'Industrial',
-  'Agricultural'
+  'Agricultural',
 ]
 
 const systemSizes = [
-  'Small (1-3 kW) - For small homes',
-  'Medium (4-8 kW) - For average homes',
-  'Large (9-15 kW) - For large homes',
-  'Extra Large (16+ kW) - For commercial',
-  'Not sure - Need consultation'
+  'Small (1–3 kW)',
+  'Medium (4–8 kW)',
+  'Large (9–15 kW)',
+  'Extra large (16+ kW)',
+  'Not sure — need consultation',
 ]
 
-const submitQuote = () => {
-  console.log('Quote submitted:', form.value)
-  // Aqui você implementaria o envio do formulário
-  alert('Obrigado! Entraremos em contato em até 24 horas.')
+const isValid = computed(() => {
+  const f = form.value
+  return (
+    f.firstName.trim() &&
+    f.lastName.trim() &&
+    /.+@.+\..+/.test(f.email) &&
+    f.phone.trim() &&
+    f.address.trim() &&
+    f.propertyType &&
+    f.monthlyBill > 0
+  )
+})
+
+async function submit() {
+  if (!isValid.value) return
+  submitting.value = true
+  try {
+    // TODO: integrate with backend endpoint (POST /api/quote)
+    await new Promise((r) => setTimeout(r, 800))
+    submitted.value = true
+  } catch (e) {
+    error.value = e.message
+  } finally {
+    submitting.value = false
+  }
 }
+
+const reasons = [
+  { key: 'fast', title: 'Fast response', desc: 'Get your quote within 24 hours.' },
+  { key: 'expert', title: 'Expert consultation', desc: 'Free consultation with our solar engineers.' },
+  { key: 'price', title: 'Competitive pricing', desc: 'Best value for your investment.' },
+  { key: 'noobl', title: 'No obligation', desc: 'Free quote with no strings attached.' },
+]
 </script>
 
+<template>
+  <div class="quote-page">
+    <PageHeader
+      eyebrow-key="quote.eyebrow"
+      eyebrow-default="Get a quote"
+      title-key="quote.title"
+      :title-default="'Tell us about your project.'"
+      lead-key="quote.lead"
+      lead-default="Share a few details and we'll come back with a personalized solar plan within 24 hours."
+    />
+
+    <section class="section">
+      <div class="container form-wrap">
+        <div v-if="submitted" class="thanks">
+          <div class="thanks-icon">✓</div>
+          <h2 class="display-title smaller">
+            <EditableText content-key="quote.thanks.title" default="Thank you." />
+          </h2>
+          <p class="lead">
+            <EditableText
+              content-key="quote.thanks.lead"
+              default="We received your request and will be in touch within 24 hours."
+            />
+          </p>
+        </div>
+
+        <form v-else class="form" @submit.prevent="submit">
+          <div class="row two">
+            <label>
+              <span>First name</span>
+              <input v-model="form.firstName" required />
+            </label>
+            <label>
+              <span>Last name</span>
+              <input v-model="form.lastName" required />
+            </label>
+          </div>
+          <div class="row two">
+            <label>
+              <span>Email</span>
+              <input v-model="form.email" type="email" required />
+            </label>
+            <label>
+              <span>Phone</span>
+              <input v-model="form.phone" required />
+            </label>
+          </div>
+          <label class="row">
+            <span>Property address</span>
+            <input v-model="form.address" required />
+          </label>
+          <div class="row two">
+            <label>
+              <span>Property type</span>
+              <select v-model="form.propertyType" required>
+                <option value="" disabled>Select…</option>
+                <option v-for="t in propertyTypes" :key="t" :value="t">{{ t }}</option>
+              </select>
+            </label>
+            <label>
+              <span>Monthly bill (₱)</span>
+              <input v-model.number="form.monthlyBill" type="number" min="1" required />
+            </label>
+          </div>
+          <label class="row">
+            <span>Estimated system size</span>
+            <select v-model="form.systemSize">
+              <option value="">Optional</option>
+              <option v-for="s in systemSizes" :key="s" :value="s">{{ s }}</option>
+            </select>
+          </label>
+          <label class="row">
+            <span>Notes (optional)</span>
+            <textarea v-model="form.notes" rows="4" />
+          </label>
+
+          <div v-if="error" class="error">{{ error }}</div>
+
+          <button type="submit" class="submit" :disabled="!isValid || submitting">
+            {{ submitting ? 'Sending…' : 'Get my quote' }}
+            <span aria-hidden>→</span>
+          </button>
+        </form>
+
+        <aside class="reasons">
+          <h3 class="aside-title">
+            <EditableText
+              content-key="quote.aside.title"
+              default="Why ask us"
+            />
+          </h3>
+          <div v-for="r in reasons" :key="r.key" class="reason">
+            <div class="reason-title">
+              <EditableText :content-key="`quote.aside.${r.key}.title`" :default="r.title" />
+            </div>
+            <div class="reason-desc">
+              <EditableText :content-key="`quote.aside.${r.key}.desc`" :default="r.desc" />
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </div>
+</template>
+
 <style scoped>
-.gradient-title {
-  background: linear-gradient(135deg, #ff7700, #ffa500, #dcdada);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.quote-page { color: var(--color-ink); background: var(--color-cream); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+.form-wrap {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+.form {
+  background: #fff;
+  border-radius: 24px;
+  padding: 40px;
+  border: 1px solid rgba(58, 79, 58, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.row { display: flex; flex-direction: column; gap: 8px; }
+.row.two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.row span {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-moss);
+  letter-spacing: 0.02em;
+}
+input, select, textarea {
+  font: inherit;
+  font-size: 15px;
+  padding: 12px 14px;
+  border: 1.5px solid rgba(58, 79, 58, 0.18);
+  border-radius: 10px;
+  background: var(--color-cream-soft);
+  color: var(--color-ink);
+  transition: border-color 0.15s, background 0.15s;
+  font-family: var(--font-sans);
+  width: 100%;
+  box-sizing: border-box;
+}
+textarea { resize: vertical; }
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--color-moss);
+  background: #fff;
+}
+.submit {
+  margin-top: 8px;
+  background: var(--color-moss);
+  color: var(--color-cream);
+  font: inherit;
+  font-weight: 600;
+  padding: 16px 28px;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: background 0.15s, transform 0.05s;
+}
+.submit:hover:not(:disabled) { background: var(--color-moss-deep); }
+.submit:active:not(:disabled) { transform: scale(0.99); }
+.submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.error {
+  background: rgba(199, 82, 42, 0.08);
+  color: var(--color-terracotta);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
 }
 
-.quote-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 1px solid rgba(255, 165, 0, 0.2);
+.reasons {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.aside-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--color-moss);
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+.reason {
+  padding: 20px 0;
+  border-top: 1px solid rgba(58, 79, 58, 0.12);
+}
+.reason-title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--color-moss);
+  margin-bottom: 6px;
+}
+.reason-desc { font-size: 14px; color: var(--color-ink-soft); line-height: 1.5; }
+
+.thanks {
+  background: #fff;
+  border-radius: 24px;
+  padding: 64px 40px;
+  text-align: center;
+  border: 1px solid rgba(58, 79, 58, 0.08);
+  grid-column: 1 / -1;
+}
+.thanks-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  background: var(--color-moss);
+  color: var(--color-cream);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+}
+.thanks .display-title.smaller { font-size: 2rem; }
+.display-title.smaller {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--color-moss);
+}
+
+@media (max-width: 960px) {
+  .form-wrap { grid-template-columns: 1fr; }
+  .reasons { position: static; }
+  .row.two { grid-template-columns: 1fr; }
+  .form { padding: 28px; }
+  .container { padding: 0 24px; }
 }
 </style>

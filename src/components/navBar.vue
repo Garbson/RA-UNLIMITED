@@ -1,237 +1,241 @@
-<template>
-  <v-app-bar eager scroll-behavior="hide" class="bg-white-orange" :elevation="0">
-    <v-avatar
-      size="40"
-      :class="$vuetify.display.mobile ? 'ml-4' : 'ml-15'"
-      rounded="lg"
-      image="img/logoRa.jpeg"
-      @click="navigateToHome"
-      style="cursor: pointer"
-    />
-    <v-app-bar-title class="Name gradient-text" @click="navigateToHome" style="cursor: pointer">
-      <div class="ReacheForTheSun gradient-text" :class="$vuetify.display.mobile ? 'text-h6' : 'text-h5'">
-        RA UNLIMITED
-      </div>
-    </v-app-bar-title>
-
-    <v-spacer />
-
-    <!-- Desktop Menu -->
-    <div v-if="!$vuetify.display.mobile" class="d-flex">
-      <router-link to="/" class="text-decoration-none">
-        <v-btn class="text-white btnActions" text>Home</v-btn>
-      </router-link>
-      <v-btn class="text-white btnActions" text @click="scrollToAbout">About Us</v-btn>
-      <router-link to="/services" class="text-decoration-none">
-        <v-btn class="text-white btnActions" text>Services</v-btn>
-      </router-link>
-      <router-link to="/solar-solutions" class="text-decoration-none">
-        <v-btn class="text-white btnActions" text>Solutions</v-btn>
-      </router-link>
-      <router-link to="/quote" class="text-decoration-none">
-        <v-btn class="text-white btnActions" text>Quote</v-btn>
-      </router-link>
-      <v-btn class="text-white btnActions" text @click="scrollToContactDesktop">Contact</v-btn>
-    </div>
-
-    <!-- Mobile Menu Button -->
-    <v-app-bar-nav-icon
-      v-if="$vuetify.display.mobile"
-      @click="drawer = !drawer"
-      color="white"
-      class="mr-2"
-    ></v-app-bar-nav-icon>
-  </v-app-bar>
-
-  <!-- Mobile Navigation Drawer -->
-  <v-navigation-drawer v-model="drawer" location="right" temporary class="mobile-drawer">
-    <v-list>
-      <v-list-item prepend-icon="mdi-close" @click="drawer = false" class="close-button">
-        <v-list-item-title>Close Menu</v-list-item-title>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <router-link to="/" class="text-decoration-none" @click="drawer = false">
-        <v-list-item prepend-icon="mdi-home" class="mobile-nav-item">
-          <v-list-item-title>Home</v-list-item-title>
-        </v-list-item>
-      </router-link>
-
-      <v-list-item prepend-icon="mdi-information" @click="scrollToAbout" class="mobile-nav-item">
-        <v-list-item-title>About Us</v-list-item-title>
-      </v-list-item>
-
-      <router-link to="/services" class="text-decoration-none" @click="drawer = false">
-        <v-list-item prepend-icon="mdi-wrench" class="mobile-nav-item">
-          <v-list-item-title>Our Services</v-list-item-title>
-        </v-list-item>
-      </router-link>
-
-      <router-link to="/solar-solutions" class="text-decoration-none" @click="drawer = false">
-        <v-list-item prepend-icon="mdi-solar-panel-large" class="mobile-nav-item">
-          <v-list-item-title>Solar Solutions</v-list-item-title>
-        </v-list-item>
-      </router-link>
-
-      <router-link to="/quote" class="text-decoration-none" @click="drawer = false">
-        <v-list-item prepend-icon="mdi-calculator" class="mobile-nav-item">
-          <v-list-item-title>Get a Quote</v-list-item-title>
-        </v-list-item>
-      </router-link>
-
-      <router-link to="/support" class="text-decoration-none" @click="drawer = false">
-        <v-list-item prepend-icon="mdi-help-circle" class="mobile-nav-item">
-          <v-list-item-title>Support</v-list-item-title>
-        </v-list-item>
-      </router-link>
-
-
-      <v-list-item prepend-icon="mdi-phone" @click="scrollToContact" class="mobile-nav-item">
-        <v-list-item-title>Contact</v-list-item-title>
-      </v-list-item>
-    </v-list>
-  </v-navigation-drawer>
-</template>
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
+import EditableText from './EditableText.vue'
 
 const router = useRouter()
 const drawer = ref(false)
+const scrolled = ref(false)
 
-const navigateToHome = () => {
+function onScroll() {
+  scrolled.value = window.scrollY > 24
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', onScroll, { passive: true })
+  onScroll()
+})
+onUnmounted(() => window.removeEventListener('scroll', onScroll))
+
+function navigateHome() {
   router.push('/')
 }
 
-const scrollToAbout = () => {
-  // Se não estiver na home, navegar primeiro
-  if (router.currentRoute.value.path !== '/') {
-    router.push('/').then(() => {
-      // Aguardar um pouco para a página carregar
-      setTimeout(() => {
-        const aboutSection = document.getElementById('about-section')
-        if (aboutSection) {
-          aboutSection.scrollIntoView({ behavior: 'smooth' })
-        }
-      }, 100)
-    })
-  } else {
-    const aboutSection = document.getElementById('about-section')
-    if (aboutSection) {
-      aboutSection.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
+async function scrollTo(id, opts = {}) {
   drawer.value = false
-}
-
-const scrollToContactDesktop = () => {
-  // Se não estiver na home, navegar primeiro
   if (router.currentRoute.value.path !== '/') {
-    router.push('/').then(() => {
-      setTimeout(() => {
-        const footer = document.querySelector('.footer-section')
-        if (footer) {
-          footer.scrollIntoView({ behavior: 'smooth' })
-        }
-      }, 100)
-    })
+    await router.push('/')
+    setTimeout(() => doScroll(id), 120)
   } else {
-    const footer = document.querySelector('.footer-section')
-    if (footer) {
-      footer.scrollIntoView({ behavior: 'smooth' })
-    }
+    doScroll(id)
   }
 }
 
-const scrollToContact = () => {
-  const footer = document.querySelector('.footer-section')
-  if (footer) {
-    footer.scrollIntoView({ behavior: 'smooth' })
-  }
-  drawer.value = false
+function doScroll(id) {
+  const el = id.startsWith('.') ? document.querySelector(id) : document.getElementById(id)
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
+
+const navLinks = [
+  { type: 'route', to: '/', label: 'Home' },
+  { type: 'action', label: 'About', action: () => scrollTo('about-section') },
+  { type: 'route', to: '/services', label: 'Services' },
+  { type: 'route', to: '/solar-solutions', label: 'Solutions' },
+  { type: 'route', to: '/quote', label: 'Get a quote' },
+  { type: 'action', label: 'Contact', action: () => scrollTo('.footer-section') },
+]
 </script>
+
+<template>
+  <header :class="['site-header', { scrolled }]">
+    <div class="header-inner">
+      <button class="brand" @click="navigateHome" aria-label="Go to homepage">
+        <img src="/img/logoRa.jpeg" alt="" class="brand-logo" />
+        <span class="brand-name">
+          <EditableText content-key="brand.name" default="Ra Unlimited" />
+        </span>
+      </button>
+
+      <nav class="nav-desktop">
+        <template v-for="(l, i) in navLinks" :key="i">
+          <router-link
+            v-if="l.type === 'route'"
+            :to="l.to"
+            class="nav-link"
+            :class="{ cta: l.label === 'Get a quote' }"
+          >
+            {{ l.label }}
+          </router-link>
+          <button v-else class="nav-link" @click="l.action">{{ l.label }}</button>
+        </template>
+      </nav>
+
+      <button
+        class="menu-toggle"
+        @click="drawer = !drawer"
+        :aria-expanded="drawer"
+        aria-label="Toggle menu"
+      >
+        <span :class="['bar', { open: drawer }]" />
+        <span :class="['bar', { open: drawer }]" />
+        <span :class="['bar', { open: drawer }]" />
+      </button>
+    </div>
+
+    <Transition name="drawer">
+      <div v-if="drawer" class="drawer">
+        <nav class="drawer-nav">
+          <template v-for="(l, i) in navLinks" :key="i">
+            <router-link
+              v-if="l.type === 'route'"
+              :to="l.to"
+              class="drawer-link"
+              @click="drawer = false"
+            >
+              {{ l.label }}
+            </router-link>
+            <button v-else class="drawer-link" @click="l.action">{{ l.label }}</button>
+          </template>
+        </nav>
+      </div>
+    </Transition>
+  </header>
+</template>
+
 <style scoped>
-.bg-white-orange {
-  background: linear-gradient(90deg, #161515 0%, #ffa500 100%);
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(245, 240, 230, 0);
+  transition: background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
 }
-.Name {
-  font-family: 'Arimo', sans-serif;
+.site-header.scrolled {
+  background: rgba(245, 240, 230, 0.85);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  box-shadow: 0 1px 0 rgba(58, 79, 58, 0.08);
 }
-.gradient-text {
-  background: linear-gradient(90deg, #edebeb, #ff7700);
-  -webkit-background-clip: text; /* Safari/Chrome */
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent !important;
-  display: inline-block;
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
-
-.btnActions {
-  font-family: 'Arimo', sans-serif;
-  font-weight: 600;
-  transition: all 0.3s ease;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font: inherit;
+  color: var(--color-moss);
 }
-
-.btnActions:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+.brand-logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
 }
-
-.text-decoration-none {
+.brand-name {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  font-weight: 500;
+  color: var(--color-moss);
+}
+.nav-desktop {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-link {
+  background: none;
+  border: none;
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 999px;
+  cursor: pointer;
   text-decoration: none;
+  transition: color 0.15s, background 0.15s;
 }
-
-/* Active route styling */
-.router-link-active .btnActions {
-  background-color: rgba(255, 255, 255, 0.15);
-  font-weight: 700;
+.nav-link:hover {
+  color: var(--color-moss);
+  background: rgba(58, 79, 58, 0.06);
 }
-
-/* Mobile drawer styling */
-.mobile-drawer {
-  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+.nav-link.cta {
+  background: var(--color-moss);
+  color: var(--color-cream);
+  padding: 10px 22px;
+  margin-left: 8px;
 }
-
-.close-button {
-  background-color: rgba(255, 165, 0, 0.1);
-  margin-bottom: 8px;
+.nav-link.cta:hover {
+  background: var(--color-moss-deep);
 }
-
-.mobile-nav-item {
-  transition: all 0.3s ease;
-  border-radius: 8px;
-  margin: 4px 8px;
+.router-link-exact-active:not(.cta) {
+  color: var(--color-terracotta);
 }
-
-.mobile-nav-item:hover {
-  background-color: rgba(255, 165, 0, 0.1);
-  transform: translateX(5px);
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  position: relative;
+  margin-left: auto;
 }
-
-.router-link-exact-active .mobile-nav-item {
-  background-color: rgba(255, 165, 0, 0.2);
-  font-weight: 600;
+.bar {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: var(--color-moss);
+  margin: 5px auto;
+  transition: transform 0.25s, opacity 0.25s;
 }
+.bar.open:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.bar.open:nth-child(2) { opacity: 0; }
+.bar.open:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-/* Fix color consistency for all mobile nav items */
-.mobile-nav-item .v-list-item-title {
-  color: #2c3e50 !important;
+.drawer {
+  position: absolute;
+  inset: 100% 0 auto 0;
+  background: var(--color-cream);
+  box-shadow: 0 12px 32px rgba(42, 42, 36, 0.12);
+  border-top: 1px solid rgba(58, 79, 58, 0.08);
 }
-
-.mobile-nav-item .v-icon {
-  color: #ff7700 !important;
+.drawer-nav { display: flex; flex-direction: column; padding: 12px 24px 28px; }
+.drawer-link {
+  background: none;
+  border: none;
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 18px 8px;
+  text-align: left;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(58, 79, 58, 0.08);
+  cursor: pointer;
+  font-family: var(--font-serif);
+  letter-spacing: -0.01em;
 }
+.drawer-link:last-child { border-bottom: none; }
+.drawer-enter-active, .drawer-leave-active { transition: opacity 0.2s, transform 0.2s; }
+.drawer-enter-from, .drawer-leave-to { opacity: 0; transform: translateY(-8px); }
 
-/* Mobile responsive adjustments */
-@media (max-width: 768px) {
-  .v-app-bar-title {
-    font-size: 1.1rem !important;
-  }
-
-  .ReacheForTheSun {
-    font-size: 1rem !important;
-  }
+@media (max-width: 960px) {
+  .nav-desktop { display: none; }
+  .menu-toggle { display: block; }
+  .header-inner { padding: 14px 20px; }
+  .brand-name { font-size: 18px; }
 }
 </style>

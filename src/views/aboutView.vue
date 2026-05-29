@@ -1,1305 +1,709 @@
+<script setup>
+import EditableText from '../components/EditableText.vue'
+
+const team = [
+  {
+    key: 'paul',
+    img: '/img/paul.png',
+    name: 'Paul Jacobchuk',
+    role: 'Founder & CEO',
+    bio: "Paul is the visionary founder of Ra Unlimited. An electrical engineer trained at the University of Washington, he brings over a decade of experience in business development and clean-energy innovation. His passion for empowering underserved communities drives our mission to deliver affordable, reliable electricity through solar microgrids — fostering education, health and economic stability in remote areas.",
+  },
+  {
+    key: 'garbson',
+    img: '/img/garbson.png',
+    name: 'Garbson Souza',
+    role: 'Chief Technology Officer',
+    bio: "Garbson leads the digital backbone of our renewable-energy initiatives. With years of hands-on experience crafting intuitive web applications across four countries, he specializes in responsive design and user-centric interfaces — ensuring seamless platforms that support our mission of sustainable energy access.",
+  },
+  {
+    key: 'ehloura',
+    img: '/img/Ehloura.png',
+    name: 'Ehloura Jacobchuk',
+    role: 'Co-Founder · Board Advisor',
+    bio: "A resilient Filipina from Cagayan de Oro, Ehloura brings strategic wisdom to guide our growth and impact. With a career rooted in community leadership, she advises on ethical governance and inclusive environments, mentoring startups and championing women's advancement across the Philippines.",
+  },
+  {
+    key: 'adel',
+    img: '/img/del.png',
+    name: 'Adel Macatangay',
+    role: 'Chief Operating Officer',
+    bio: "Dynamic business leader with 20+ years of international experience across the Philippines, US, UK and Australia. Adel has a proven track record in strategic planning, client engagement and cross-functional leadership — building strong relationships and delivering sustainable outcomes.",
+  },
+]
+
+const challenges = [
+  { num: '2.1M', label: 'Households', desc: 'Still lack access to reliable electricity in rural Philippines' },
+  { num: '8–12h', label: 'Daily blackouts', desc: 'Average power outages in many Filipino communities' },
+  { num: '60%', label: 'Students affected', desc: 'Children struggle to study after dark due to lack of light' },
+  { num: '₱500+', label: 'Monthly cost', desc: 'Spent on candles, batteries and diesel for basic needs' },
+]
+
+const impact = [
+  {
+    key: 'lighting',
+    title: 'Reliable lighting',
+    before: 'Children study by candlelight or not at all. ₱200/month spent on candles and batteries. Fire hazards from open flames.',
+    after: 'Bright, safe LED lighting for 8+ hours. Children study effectively after dark. No recurring costs.',
+  },
+  {
+    key: 'comms',
+    title: 'Staying connected',
+    before: 'Walking hours to charge phones in town. Missing important calls. Paying ₱20–50 per charge.',
+    after: 'Charge multiple devices at home. Stay connected with family and opportunities. Save money every month.',
+  },
+  {
+    key: 'business',
+    title: 'Small business growth',
+    before: 'Shops close at sunset. No refrigeration for products. Limited income opportunities.',
+    after: 'Extend hours into the evening. Keep products fresh with refrigeration. Income up 40–60%.',
+  },
+]
+</script>
+
 <template>
-  <v-container class="py-8">
-    <v-row class="d-flex justify-center" spacing="6">
-      <v-col cols="12" md="6" class="mb-6">
-        <v-card
-          height="650px"
-          class="gradientCard elevation-8 card-hover"
-          style="border-radius: 20px; overflow: hidden"
-        >
-          <div class="card-header pa-6 text-center">
-            <v-icon size="60" class="mb-4" color="white">mdi-lightning-bolt</v-icon>
-            <v-card-title class="text-center gradient-text text-h4 font-weight-bold mb-2">
-              RA UNLIMITED
-            </v-card-title>
-            <v-divider
-              class="mx-auto"
-              style="width: 80px; border-color: rgba(255, 255, 255, 0.3)"
-            ></v-divider>
+  <div class="about">
+    <!-- MISSION + GOALS -->
+    <section class="section split">
+      <div class="container split-grid">
+        <div class="split-col">
+          <div class="eyebrow">
+            <EditableText content-key="mission.eyebrow" default="Who we are" />
           </div>
-
-          <v-card-text class="pa-6 text-body-1" style="line-height: 1.8">
-            <p class="mb-4 font-weight-medium">
-              🌟 <strong>We are a pioneering renewable energy company</strong> revolutionizing the
-              Philippines' energy landscape.
-            </p>
-            <p class="mb-4">
-              💡 We provide <strong>clean, sustainable, and affordable electricity</strong> by
-              harnessing the abundant sunlight of the Filipino archipelago.
-            </p>
-            <p class="mb-4">
-              🔋 Our mission is to create a greener and more prosperous energy future for all
-              Filipino communities.
-            </p>
-            <p class="text-center font-weight-bold text-orange-darken-2 mt-6">
-              "Unlimited energy for a sustainable future"
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <v-col cols="12" md="6" class="mb-6">
-        <v-card
-          height="650px"
-          class="gradientCard elevation-8 card-hover"
-          style="border-radius: 20px; overflow: hidden"
-        >
-          <div class="card-header pa-6 text-center">
-            <v-icon size="60" class="mb-4" color="white">mdi-target</v-icon>
-            <v-card-title class="text-center gradient-text text-h4 font-weight-bold mb-2">
-              Our Goals
-            </v-card-title>
-            <v-divider
-              class="mx-auto"
-              style="width: 80px; border-color: rgba(255, 255, 255, 0.3)"
-            ></v-divider>
-          </div>
-
-          <v-card-text class="pa-6">
-            <div class="mb-4 d-flex align-start">
-              <v-icon class="mr-3 mt-1" color="orange-darken-2">mdi-flash</v-icon>
-              <div>
-                <h3 class="text-h6 font-weight-bold mb-2 text-grey-darken-3">
-                  Power the Philippines
-                </h3>
-                <p class="text-body-2 text-grey-darken-1">
-                  Deliver reliable and sustainable energy for homes, businesses, and communities
-                  throughout the country.
-                </p>
-              </div>
-            </div>
-
-            <div class="mb-4 d-flex align-start">
-              <v-icon class="mr-3 mt-1" color="green">mdi-earth</v-icon>
-              <div>
-                <h3 class="text-h6 font-weight-bold mb-2 text-grey-darken-3">
-                  Protect the Environment
-                </h3>
-                <p class="text-body-2 text-grey-darken-1">
-                  Reduce dependence on fossil fuels and combat climate change through clean
-                  technologies.
-                </p>
-              </div>
-            </div>
-
-            <div class="mb-4 d-flex align-start">
-              <v-icon class="mr-3 mt-1" color="blue">mdi-account-group</v-icon>
-              <div>
-                <h3 class="text-h6 font-weight-bold mb-2 text-grey-darken-3">
-                  Empower Communities
-                </h3>
-                <p class="text-body-2 text-grey-darken-1">
-                  Create job opportunities and improve Filipinos' quality of life through
-                  sustainable projects.
-                </p>
-              </div>
-            </div>
-
-            <div
-              class="text-center mt-6 pa-4"
-              style="background: rgba(255, 165, 0, 0.1); border-radius: 12px"
-            >
-              <p class="font-weight-bold text-orange-darken-2 mb-0">
-                🚀 RA UNLIMITED: Powering the Philippines' renewable energy future
-              </p>
-            </div>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-
-    <!-- Call to Action - Get Quote -->
-    <v-container class="py-16">
-      <v-row class="d-flex justify-center">
-        <v-col cols="12" lg="10">
-          <v-card class="cta-quote-card pa-8 elevation-8 text-center" style="border-radius: 24px">
-            <v-row class="align-center">
-              <v-col cols="12" md="8" class="text-left">
-                <h2 class="text-h3 font-weight-bold mb-4 gradient-title">
-                  Ready to Power Your Future?
-                </h2>
-                <p class="text-h6 mb-4 text-grey-darken-2">
-                  Join thousands of Filipino families who have already made the switch to clean,
-                  reliable solar energy. Start saving money while helping the environment.
-                </p>
-                <div class="benefits-list mb-6">
-                  <v-chip class="mr-2 mb-2" color="green" size="large">
-                    <v-icon left>mdi-check</v-icon>
-                    Save ₱500+ monthly
-                  </v-chip>
-                  <v-chip class="mr-2 mb-2" color="blue" size="large">
-                    <v-icon left>mdi-check</v-icon>
-                    24/7 reliable power
-                  </v-chip>
-                  <v-chip class="mr-2 mb-2" color="orange" size="large">
-                    <v-icon left>mdi-check</v-icon>
-                    25-year warranty
-                  </v-chip>
-                </div>
-              </v-col>
-              <v-col cols="12" md="4" class="text-center">
-                <router-link to="/quote" class="text-decoration-none">
-                  <v-btn
-                    color="orange"
-                    size="x-large"
-                    class="mb-4 px-8 py-4"
-                    style="border-radius: 16px"
-                    block
-                  >
-                    <v-icon left size="large">mdi-calculator</v-icon>
-                    Get FREE Quote
-                  </v-btn>
-                </router-link>
-                <p class="text-body-2 text-grey-darken-1">
-                  <v-icon size="small">mdi-clock</v-icon>
-                  Response within 24 hours
-                </p>
-              </v-col>
-            </v-row>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-
-    <!-- Call to Action - Services & Solutions -->
-    <v-container class="py-12">
-      <div class="text-center mb-10">
-        <h2 class="display-1 font-weight-bold mb-4 gradient-title">Explore Our Solar Solutions</h2>
-        <p class="subtitle-1 text-grey-darken-1 mx-auto" style="max-width: 700px">
-          From residential homes to large commercial projects, we have the perfect solar solution
-          for every need
-        </p>
-      </div>
-
-      <v-row class="d-flex justify-center" spacing="6">
-        <v-col cols="12" md="6" class="mb-6">
-          <v-card
-            class="cta-service-card elevation-6 text-center"
-            style="border-radius: 20px; height: 400px"
-          >
-            <div class="service-cta-header pa-6">
-              <v-icon size="80" color="white" class="mb-4">mdi-wrench</v-icon>
-              <h3 class="text-h4 font-weight-bold text-white mb-2">Our Services</h3>
-              <p class="text-body-1 text-white">Complete solar installation and maintenance</p>
-            </div>
-            <v-card-text class="pa-6 d-flex flex-column justify-space-between h-100">
-              <div>
-                <p class="text-body-1 mb-4">
-                  Professional installation, maintenance, and support for all types of solar energy
-                  systems.
-                </p>
-                <div class="service-highlights mb-6">
-                  <p class="text-body-2 mb-2">✓ Residential & Commercial Installation</p>
-                  <p class="text-body-2 mb-2">✓ 24/7 Technical Support</p>
-                  <p class="text-body-2 mb-2">✓ Maintenance & Monitoring</p>
-                </div>
-              </div>
-              <router-link to="/services" class="text-decoration-none">
-                <v-btn color="orange" size="large" class="px-6" style="border-radius: 12px" block>
-                  <v-icon left>mdi-arrow-right</v-icon>
-                  View Services
-                </v-btn>
-              </router-link>
-            </v-card-text>
-          </v-card>
-        </v-col>
-
-        <v-col cols="12" md="6" class="mb-6">
-          <v-card
-            class="cta-solution-card elevation-6 text-center"
-            style="border-radius: 20px; height: 400px"
-          >
-            <div class="solution-cta-header pa-6">
-              <v-icon size="80" color="white" class="mb-4">mdi-solar-panel-large</v-icon>
-              <h3 class="text-h4 font-weight-bold text-white mb-2">Solar Solutions</h3>
-              <p class="text-body-1 text-white">Advanced technology for the Philippines</p>
-            </div>
-            <v-card-text class="pa-6 d-flex flex-column justify-space-between h-100">
-              <div>
-                <p class="text-body-1 mb-4">
-                  Cutting-edge solar panels, batteries, and inverters designed for tropical
-                  climates.
-                </p>
-                <div class="solution-highlights mb-6">
-                  <p class="text-body-2 mb-2">⚡ High-Efficiency Panels</p>
-                  <p class="text-body-2 mb-2">🔋 Smart Battery Storage</p>
-                  <p class="text-body-2 mb-2">🌪️ Typhoon-Resistant Design</p>
-                </div>
-              </div>
-              <router-link to="/solar-solutions" class="text-decoration-none">
-                <v-btn color="blue" size="large" class="px-6" style="border-radius: 12px" block>
-                  <v-icon left>mdi-arrow-right</v-icon>
-                  Explore Solutions
-                </v-btn>
-              </router-link>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
-    </v-container>
-
-    <!-- Energy Challenge Section -->
-    <v-row class="mt-16 mb-8">
-      <v-col cols="12" class="text-center mb-8">
-        <h2 class="display-1 font-weight-bold gradient-title mb-4">
-          The Energy Challenge in the Philippines
-        </h2>
-        <p class="subtitle-1 text-grey-darken-1 mx-auto" style="max-width: 700px">
-          Understanding the real impact of energy poverty on Filipino families and communities
-        </p>
-      </v-col>
-    </v-row>
-
-    <v-row class="d-flex justify-center" spacing="4">
-      <v-col cols="12" md="3" class="mb-6">
-        <v-card
-          height="280px"
-          class="challengeCard elevation-6 card-hover text-center"
-          style="border-radius: 16px"
-        >
-          <v-card-text class="pa-6 d-flex flex-column justify-center align-center h-100">
-            <v-icon size="50" color="red-darken-1" class="mb-4">mdi-home-off</v-icon>
-            <h3 class="text-h4 font-weight-bold text-red-darken-1 mb-2">2.1M</h3>
-            <h4 class="text-h6 font-weight-bold mb-3 text-grey-darken-3">Households</h4>
-            <p class="text-body-2 text-grey-darken-1">
-              Still lack access to reliable electricity in rural Philippines
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <v-col cols="12" md="3" class="mb-6">
-        <v-card
-          height="280px"
-          class="challengeCard elevation-6 card-hover text-center"
-          style="border-radius: 16px"
-        >
-          <v-card-text class="pa-6 d-flex flex-column justify-center align-center h-100">
-            <v-icon size="50" color="orange-darken-2" class="mb-4">mdi-clock-alert</v-icon>
-            <h3 class="text-h4 font-weight-bold text-orange-darken-2 mb-2">8-12hrs</h3>
-            <h4 class="text-h6 font-weight-bold mb-3 text-grey-darken-3">Daily Blackouts</h4>
-            <p class="text-body-2 text-grey-darken-1">
-              Average power outages experienced by many Filipino communities
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <v-col cols="12" md="3" class="mb-6">
-        <v-card
-          height="280px"
-          class="challengeCard elevation-6 card-hover text-center"
-          style="border-radius: 16px"
-        >
-          <v-card-text class="pa-6 d-flex flex-column justify-center align-center h-100">
-            <v-icon size="50" color="blue-darken-1" class="mb-4">mdi-school</v-icon>
-            <h3 class="text-h4 font-weight-bold text-blue-darken-1 mb-2">60%</h3>
-            <h4 class="text-h6 font-weight-bold mb-3 text-grey-darken-3">Students Affected</h4>
-            <p class="text-body-2 text-grey-darken-1">
-              Children struggle to study after dark due to lack of proper lighting
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <v-col cols="12" md="3" class="mb-6">
-        <v-card
-          height="280px"
-          class="challengeCard elevation-6 card-hover text-center"
-          style="border-radius: 16px"
-        >
-          <v-card-text class="pa-6 d-flex flex-column justify-center align-center h-100">
-            <v-icon size="50" color="green-darken-1" class="mb-4">mdi-currency-php</v-icon>
-            <h3 class="text-h4 font-weight-bold text-green-darken-1 mb-2">₱500+</h3>
-            <h4 class="text-h6 font-weight-bold mb-3 text-grey-darken-3">Monthly Cost</h4>
-            <p class="text-body-2 text-grey-darken-1">
-              Families spend on candles, batteries, and diesel for basic energy needs
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-
-    <!-- How We're Making a Difference Section -->
-    <v-row class="mt-16 mb-8">
-      <v-col cols="12" class="text-center mb-8">
-        <h2 class="display-1 font-weight-bold gradient-title mb-4">
-          How We're Making a Difference
-        </h2>
-        <p class="subtitle-1 text-grey-darken-1 mx-auto" style="max-width: 700px">
-          Transforming lives through sustainable solar energy solutions
-        </p>
-      </v-col>
-    </v-row>
-
-    <v-row class="d-flex justify-center" spacing="6">
-      <v-col cols="12" md="4" class="mb-6">
-        <v-card
-          height="500px"
-          class="impactCard elevation-8 card-hover"
-          style="border-radius: 20px; overflow: hidden"
-        >
-          <div class="impact-header pa-6 text-center">
-            <v-icon size="60" class="mb-4" color="white">mdi-lightbulb-on</v-icon>
-            <v-card-title class="text-center text-white text-h5 font-weight-bold mb-2">
-              Reliable Lighting
-            </v-card-title>
-          </div>
-
-          <v-card-text class="pa-6">
-            <div class="mb-4">
-              <h4 class="text-h6 font-weight-bold mb-2 text-grey-darken-3">Before Solar:</h4>
-              <p class="text-body-2 text-grey-darken-1 mb-3">
-                📚 Children study by candlelight or not at all<br />
-                💰 ₱200/month spent on candles and batteries<br />
-                🔥 Fire hazards from open flames
-              </p>
-            </div>
-
-            <v-divider class="mb-4"></v-divider>
-
-            <div>
-              <h4 class="text-h6 font-weight-bold mb-2 text-green-darken-2">With Solar:</h4>
-              <p class="text-body-2 text-green-darken-1">
-                ✨ Bright, safe LED lighting for 8+ hours<br />
-                📖 Children can study effectively after dark<br />
-                💡 No recurring costs for basic lighting
-              </p>
-            </div>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <v-col cols="12" md="4" class="mb-6">
-        <v-card
-          height="500px"
-          class="impactCard elevation-8 card-hover"
-          style="border-radius: 20px; overflow: hidden"
-        >
-          <div class="impact-header pa-6 text-center">
-            <v-icon size="60" class="mb-4" color="white">mdi-cellphone</v-icon>
-            <v-card-title class="text-center text-white text-h5 font-weight-bold mb-2">
-              Communication
-            </v-card-title>
-          </div>
-
-          <v-card-text class="pa-6">
-            <div class="mb-4">
-              <h4 class="text-h6 font-weight-bold mb-2 text-grey-darken-3">Before Solar:</h4>
-              <p class="text-body-2 text-grey-darken-1 mb-3">
-                📱 Walk hours to charge phones in town<br />
-                🚶 Miss important calls and messages<br />
-                💸 Pay ₱20-50 per phone charge
-              </p>
-            </div>
-
-            <v-divider class="mb-4"></v-divider>
-
-            <div>
-              <h4 class="text-h6 font-weight-bold mb-2 text-green-darken-2">With Solar:</h4>
-              <p class="text-body-2 text-green-darken-1">
-                🔋 Charge multiple devices at home<br />
-                🌐 Stay connected with family and opportunities<br />
-                💰 Save money on charging fees
-              </p>
-            </div>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <v-col cols="12" md="4" class="mb-6">
-        <v-card
-          height="500px"
-          class="impactCard elevation-8 card-hover"
-          style="border-radius: 20px; overflow: hidden"
-        >
-          <div class="impact-header pa-6 text-center">
-            <v-icon size="60" class="mb-4" color="white">mdi-store</v-icon>
-            <v-card-title class="text-center text-white text-h5 font-weight-bold mb-2">
-              Small Business
-            </v-card-title>
-          </div>
-
-          <v-card-text class="pa-6">
-            <div class="mb-4">
-              <h4 class="text-h6 font-weight-bold mb-2 text-grey-darken-3">Before Solar:</h4>
-              <p class="text-body-2 text-grey-darken-1 mb-3">
-                🏪 Shops close when sun sets<br />
-                ❄️ No refrigeration for products<br />
-                📉 Limited income opportunities
-              </p>
-            </div>
-
-            <v-divider class="mb-4"></v-divider>
-
-            <div>
-              <h4 class="text-h6 font-weight-bold mb-2 text-green-darken-2">With Solar:</h4>
-              <p class="text-body-2 text-green-darken-1">
-                🌙 Extend business hours into evening<br />
-                🧊 Keep products fresh with refrigeration<br />
-                📈 Increase income by 40-60%
-              </p>
-            </div>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-
-    <!-- Team Section -->
-    <v-row class="mt-16 mb-8">
-      <v-col cols="12" class="text-center mb-8">
-        <h2 class="display-1 font-weight-bold gradient-title mb-4">Our Team</h2>
-        <p class="subtitle-1 text-grey-darken-1 mx-auto" style="max-width: 700px">
-          Meet the dedicated people leading our mission to energize the Philippines
-        </p>
-      </v-col>
-    </v-row>
-
-    <v-row class="d-flex justify-center" spacing="6">
-      <v-col cols="12" md="6" class="mb-6">
-        <v-card
-          height="900"
-          class="team-card elevation-8 card-hover"
-          style="border-radius: 20px; overflow: hidden"
-        >
-          <div class="team-image-container">
-            <v-img
-              src="/img/paul.png"
-              height="500"
-              cover
-              class="team-image"
-              gradient="to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7)"
-            >
-              <div class="team-overlay d-flex flex-column justify-end">
-                <h3 class="text-h4 font-weight-bold text-white mb-2">Paul Jacobchuk</h3>
-                <p class="text-h6 text-orange-lighten-2 font-weight-medium">Founder & CEO</p>
-              </div>
-            </v-img>
-          </div>
-
-          <v-card-text class="pa-6">
-            <p class="text-body-1 leading-relaxed mb-4">
-              Paul Jacobchuk is the visionary Founder and CEO of RA Unlimited, a trailblazing
-              renewable energy firm dedicated to illuminating the Philippines with sustainable solar
-              solutions.
-            </p>
-            <p class="text-body-1 leading-relaxed mb-4">
-              An energetic electrical engineer with a degree from the University of Washington, Paul
-              brings over a decade of expertise in business development and clean energy innovation.
-            </p>
-            <p class="text-body-1 leading-relaxed">
-              His passion for empowering underserved communities drives RA Unlimited's mission to
-              deliver affordable, reliable electricity through cutting-edge solar
-              microgrids—fostering education, health, and economic stability in remote areas.
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-col>
-
-      <v-col cols="12" md="6" class="mb-6">
-        <v-card
-          height="900"
-          class="team-card elevation-8 card-hover"
-          style="border-radius: 20px; overflow: hidden"
-        >
-          <div class="team-image-container">
-            <v-img
-              src="/img/garbson.png"
-              height="500"
-              cover
-              class="team-image"
-              gradient="to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7)"
-            >
-              <div class="team-overlay d-flex flex-column justify-end">
-                <h3 class="text-h4 font-weight-bold text-white mb-2">Garbson Souza</h3>
-                <p class="text-h6 text-blue-lighten-2 font-weight-medium">CTO</p>
-              </div>
-            </v-img>
-          </div>
-
-          <v-card-text class="pa-6">
-            <p class="text-body-1 leading-relaxed mb-4">
-              Garbson Souza serves as the Chief Technology Officer (CTO) at RA Unlimited, where his
-              technical prowess fuels the digital backbone of our renewable energy initiatives.
-            </p>
-            <p class="text-body-1 leading-relaxed mb-4">
-              With more than three years of hands-on experience crafting intuitive web applications,
-              Garbson has honed his skills across international projects spanning four countries,
-              specializing in responsive design and user-centric interfaces.
-            </p>
-            <p class="text-body-1 leading-relaxed">
-              His expertise in modern development tools ensures seamless, accessible platforms that
-              support RA Unlimited's goals of sustainable energy access and community empowerment.
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-col>
-      <v-col cols="12" md="6" class="mb-6">
-        <v-card
-          height="900"
-          class="team-card elevation-8 card-hover"
-          style="border-radius: 20px; overflow: hidden"
-        >
-          <div class="team-image-container">
-            <v-img
-              src="/img/Ehloura.png"
-              height="500"
-              cover
-              class="team-image"
-              gradient="to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7)"
-            >
-              <div class="team-overlay d-flex flex-column justify-end">
-                <h3 class="text-h4 font-weight-bold text-white mb-2">Ehloura Jacobchuk</h3>
-                <p class="text-h6 text-blue-lighten-2 font-weight-medium">CO-Founder</p>
-              </div>
-            </v-img>
-          </div>
-
-          <v-card-text class="pa-6">
-            <p class="text-body-1 leading-relaxed mb-4">
-              Ehloura Jacobchuk, a resilient Filipina from the vibrant city of Cagayan de Oro,
-              serves as a Board Advisor for RA Unlimited, bringing her strategic wisdom to guide the
-              agency's growth and impact.
-            </p>
-            <p class="text-body-1 leading-relaxed mb-4">
-              With a career rooted in community leadership and empowerment, she advises on ethical
-              governance, fostering inclusive environments that amplify diverse voices in business.
-              Drawing from her Mindanao heritage, Ehloura champions initiatives for women's
-              advancement and local entrepreneurship, mentoring startups in the Philippines. Her
-              advisory insights have shaped sustainable policies, enhancing organizational
-              resilience. 
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-col>
-      <v-col cols="12" md="6" class="mb-6">
-        <v-card
-          height="900"
-          class="team-card elevation-8 card-hover"
-          style="border-radius: 20px; overflow: hidden"
-        >
-          <div class="team-image-container">
-            <v-img
-              src="/img/del.png"
-              height="500"
-              cover
-              class="team-image delimg"
-              gradient="to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.7)"
-            >
-              <div class="team-overlay d-flex flex-column justify-end">
-                <h3 class="text-h4 font-weight-bold text-white mb-2">Adel Macatangay</h3>
-                <p class="text-h6 text-blue-lighten-2 font-weight-medium">COO</p>
-              </div>
-            </v-img>
-          </div>
-
-          <v-card-text class="pa-6">
-            <p class="text-body-1 leading-relaxed mb-4">
-              Dynamic business leader with 20+ years of international experience across the
-              Philippines, United States, the UK, and Australia. Holding a proven track record of
-              driving organizational growth, including leading revenue generation exceeding $650M in
-              under eight months.
-            </p>
-            <p class="text-body-1 leading-relaxed mb-4">
-              Core focus is in strategic planning, client engagement, and cross-functional
-              leadership, with expertise in scaling operations, optimizing performance metrics, and
-              executing impactful marketing strategies. Recognized for building strong
-              executive-level relationships and delivering sustainable business outcomes
-            </p>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
-
-  <!-- Footer -->
-  <footer class="footer-section mt-16">
-    <v-container>
-      <v-row class="py-12">
-        <v-col cols="12" md="4" class="mb-6">
-          <div class="footer-brand mb-6">
-            <h3 class="text-h4 font-weight-bold gradient-text mb-4">RA UNLIMITED</h3>
-            <p class="text-body-1 text-grey-lighten-1 mb-4">
-              Powering the Philippines' renewable energy future through innovative solar solutions.
-            </p>
-            <div class="social-links">
-              <v-btn
-                icon
-                variant="outlined"
-                color="white"
-                class="mr-3 social-btn"
-                size="large"
-                href="#"
-                target="_blank"
-              >
-                <v-icon>mdi-facebook</v-icon>
-              </v-btn>
-              <v-btn
-                icon
-                variant="outlined"
-                color="white"
-                class="mr-3 social-btn"
-                size="large"
-                href="#"
-                target="_blank"
-              >
-                <v-icon>mdi-twitter</v-icon>
-              </v-btn>
-              <v-btn
-                icon
-                variant="outlined"
-                color="white"
-                class="mr-3 social-btn"
-                size="large"
-                href="https://www.linkedin.com/company/raunlimited/posts/?feedView=all"
-                target="_blank"
-              >
-                <v-icon>mdi-linkedin</v-icon>
-              </v-btn>
-              <v-btn
-                icon
-                variant="outlined"
-                color="white"
-                class="social-btn"
-                size="large"
-                href="#"
-                target="_blank"
-              >
-                <v-icon>mdi-instagram</v-icon>
-              </v-btn>
-            </div>
-          </div>
-        </v-col>
-
-        <v-col cols="12" md="4" class="mb-6">
-          <h4 class="text-h6 font-weight-bold text-white mb-4">Contact Information</h4>
-          <div class="contact-info">
-            <div class="contact-item mb-3 d-flex align-center">
-              <v-icon color="orange" class="mr-3">mdi-map-marker</v-icon>
-              <div>
-                <p class="text-body-2 text-grey-lighten-1 mb-0">
-                  123 Renewable Energy Boulevard<br />
-                  Makati City, Metro Manila 1226<br />
-                  Philippines
-                </p>
-              </div>
-            </div>
-            <div class="contact-item mb-3 d-flex align-center">
-              <v-icon color="orange" class="mr-3">mdi-phone</v-icon>
-              <p class="text-body-2 text-grey-lighten-1 mb-0">+1 831 224 5335</p>
-            </div>
-            <div class="contact-item mb-3 d-flex align-center">
-              <v-icon color="orange" class="mr-3">mdi-email</v-icon>
-              <p class="text-body-2 text-grey-lighten-1 mb-0">info@raunlimited.com</p>
-            </div>
-          </div>
-        </v-col>
-
-        <v-col cols="12" md="4" class="mb-6">
-          <h4 class="text-h6 font-weight-bold text-white mb-4">Quick Links</h4>
-          <div class="footer-links">
-            <router-link to="/services" class="text-decoration-none">
-              <v-btn
-                variant="text"
-                color="grey-lighten-1"
-                class="footer-link pa-0 mb-2 justify-start"
-                block
-              >
-                Our Services
-              </v-btn>
-            </router-link>
-            <router-link to="/solar-solutions" class="text-decoration-none">
-              <v-btn
-                variant="text"
-                color="grey-lighten-1"
-                class="footer-link pa-0 mb-2 justify-start"
-                block
-              >
-                Solar Solutions
-              </v-btn>
-            </router-link>
-            <router-link to="/quote" class="text-decoration-none">
-              <v-btn
-                variant="text"
-                color="grey-lighten-1"
-                class="footer-link pa-0 mb-2 justify-start"
-                block
-              >
-                Get a Quote
-              </v-btn>
-            </router-link>
-            <router-link to="/support" class="text-decoration-none">
-              <v-btn
-                variant="text"
-                color="grey-lighten-1"
-                class="footer-link pa-0 mb-2 justify-start"
-                block
-              >
-                Support
-              </v-btn>
-            </router-link>
-          </div>
-        </v-col>
-      </v-row>
-
-      <v-divider class="footer-divider mb-6"></v-divider>
-
-      <v-row class="align-center">
-        <v-col cols="12" md="6">
-          <p class="text-body-2 text-grey-lighten-1 mb-0">
-            © 2024 RA UNLIMITED. All rights reserved.
+          <h2 class="display-title smaller">
+            <EditableText
+              content-key="mission.title"
+              :default="'A pioneering renewable\nenergy company.'"
+              tag="span"
+              multiline
+            />
+          </h2>
+          <p class="lead">
+            <EditableText
+              content-key="mission.lead"
+              default="We provide clean, sustainable and affordable electricity by harnessing the abundant sunlight of the Filipino archipelago — building a greener, more prosperous energy future for every community."
+              tag="span"
+              multiline
+            />
           </p>
-        </v-col>
-        <v-col cols="12" md="6" class="text-md-right">
-          <div class="footer-legal">
-            <router-link to="/privacy-policy" class="text-decoration-none">
-              <v-btn variant="text" color="grey-lighten-1" size="small" class="mr-4">
-                Privacy Policy
-              </v-btn>
-            </router-link>
-            <router-link to="/terms-of-service" class="text-decoration-none">
-              <v-btn variant="text" color="grey-lighten-1" size="small">Terms of Service</v-btn>
-            </router-link>
+          <p class="quote serif">
+            <EditableText
+              content-key="mission.quote"
+              default="“Unlimited energy for a sustainable future.”"
+            />
+          </p>
+        </div>
+
+        <div class="split-col">
+          <div class="goal" v-for="(_, i) in 3" :key="i">
+            <div class="goal-num">0{{ i + 1 }}</div>
+            <div>
+              <h3 class="goal-title">
+                <EditableText
+                  :content-key="`goals.${i + 1}.title`"
+                  :default="['Power the Philippines', 'Protect the environment', 'Empower communities'][i]"
+                />
+              </h3>
+              <p class="body-text">
+                <EditableText
+                  :content-key="`goals.${i + 1}.desc`"
+                  :default="[
+                    'Deliver reliable, sustainable energy for homes, businesses and communities across the country.',
+                    'Reduce dependence on fossil fuels and combat climate change through clean technology.',
+                    'Create jobs and improve quality of life through community-led sustainable projects.',
+                  ][i]"
+                  multiline
+                  tag="span"
+                />
+              </p>
+            </div>
           </div>
-        </v-col>
-      </v-row>
-    </v-container>
-  </footer>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA QUOTE -->
+    <section class="section-tight cta-quote-band">
+      <div class="container cta-quote">
+        <div class="cta-quote-text">
+          <h2 class="display-title smaller">
+            <EditableText
+              content-key="cta.title"
+              :default="'Ready to power\nyour future?'"
+              tag="span"
+              multiline
+            />
+          </h2>
+          <p class="lead">
+            <EditableText
+              content-key="cta.lead"
+              default="Join the families and communities who have already made the switch to clean, reliable solar energy — saving money while helping the environment."
+              tag="span"
+              multiline
+            />
+          </p>
+          <div class="cta-chips">
+            <span class="chip">
+              <EditableText content-key="cta.chip1" default="Save ₱500+ monthly" />
+            </span>
+            <span class="chip">
+              <EditableText content-key="cta.chip2" default="24/7 reliable power" />
+            </span>
+            <span class="chip">
+              <EditableText content-key="cta.chip3" default="25-year warranty" />
+            </span>
+          </div>
+        </div>
+        <div class="cta-quote-side">
+          <router-link to="/quote" class="cta-btn">
+            <span class="cta-btn-label">
+              <EditableText content-key="cta.button" default="Get a free quote" />
+            </span>
+            <span class="cta-btn-arrow">→</span>
+          </router-link>
+          <p class="micro">
+            <EditableText content-key="cta.micro" default="Response within 24 hours." />
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHALLENGE -->
+    <section class="section challenge-section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">
+            <EditableText content-key="challenge.eyebrow" default="The challenge" />
+          </div>
+          <h2 class="display-title smaller">
+            <EditableText
+              content-key="challenge.title"
+              default="Energy poverty is still real in the Philippines."
+              tag="span"
+              multiline
+            />
+          </h2>
+          <p class="lead">
+            <EditableText
+              content-key="challenge.lead"
+              default="Understanding the real impact of energy poverty on Filipino families and communities."
+              tag="span"
+              multiline
+            />
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          <div v-for="(c, i) in challenges" :key="i" class="stat-card">
+            <div class="stat-num">
+              <EditableText :content-key="`challenge.${i + 1}.num`" :default="c.num" />
+            </div>
+            <div class="stat-label">
+              <EditableText :content-key="`challenge.${i + 1}.label`" :default="c.label" />
+            </div>
+            <div class="stat-desc">
+              <EditableText :content-key="`challenge.${i + 1}.desc`" :default="c.desc" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPACT BEFORE / AFTER -->
+    <section class="section impact-section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">
+            <EditableText content-key="impact.eyebrow" default="How we make a difference" />
+          </div>
+          <h2 class="display-title smaller">
+            <EditableText
+              content-key="impact.title"
+              default="Before solar. With solar."
+              tag="span"
+              multiline
+            />
+          </h2>
+        </div>
+
+        <div class="impact-grid">
+          <article v-for="(i, idx) in impact" :key="i.key" class="impact-card">
+            <h3 class="impact-card-title">
+              <EditableText
+                :content-key="`impact.${i.key}.title`"
+                :default="i.title"
+              />
+            </h3>
+            <div class="impact-row">
+              <div class="impact-tag impact-tag-before">Before</div>
+              <p class="body-text">
+                <EditableText
+                  :content-key="`impact.${i.key}.before`"
+                  :default="i.before"
+                  multiline
+                  tag="span"
+                />
+              </p>
+            </div>
+            <div class="impact-divider" />
+            <div class="impact-row">
+              <div class="impact-tag impact-tag-after">With solar</div>
+              <p class="body-text impact-after-text">
+                <EditableText
+                  :content-key="`impact.${i.key}.after`"
+                  :default="i.after"
+                  multiline
+                  tag="span"
+                />
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section class="section team-section">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">
+            <EditableText content-key="team.eyebrow" default="The team" />
+          </div>
+          <h2 class="display-title smaller">
+            <EditableText
+              content-key="team.title"
+              default="The people behind the mission."
+              tag="span"
+              multiline
+            />
+          </h2>
+          <p class="lead">
+            <EditableText
+              content-key="team.lead"
+              default="Meet the dedicated team leading our work to energize the Philippines."
+              tag="span"
+              multiline
+            />
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <article v-for="m in team" :key="m.key" class="team-card">
+            <div class="team-photo">
+              <img :src="m.img" :alt="m.name" />
+            </div>
+            <div class="team-body">
+              <h3 class="team-name">
+                <EditableText :content-key="`team.${m.key}.name`" :default="m.name" />
+              </h3>
+              <p class="team-role">
+                <EditableText :content-key="`team.${m.key}.role`" :default="m.role" />
+              </p>
+              <p class="team-bio body-text">
+                <EditableText
+                  :content-key="`team.${m.key}.bio`"
+                  :default="m.bio"
+                  multiline
+                  tag="span"
+                />
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer-section">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <img src="/img/logoRa.jpeg" alt="" />
+              <span class="footer-name">
+                <EditableText content-key="footer.brand" default="Ra Unlimited" />
+              </span>
+            </div>
+            <p class="footer-tagline">
+              <EditableText
+                content-key="footer.tagline"
+                default="Powering the Philippines' renewable energy future through community-led solar projects."
+                tag="span"
+                multiline
+              />
+            </p>
+            <div class="socials">
+              <a href="#" aria-label="Facebook"><i class="mdi mdi-facebook" /></a>
+              <a href="#" aria-label="Instagram"><i class="mdi mdi-instagram" /></a>
+              <a href="https://www.linkedin.com/company/raunlimited/posts/?feedView=all" target="_blank" aria-label="LinkedIn">
+                <i class="mdi mdi-linkedin" />
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">
+              <EditableText content-key="footer.contact.heading" default="Contact" />
+            </h4>
+            <p class="footer-line">
+              <EditableText
+                content-key="footer.contact.address"
+                :default="'123 Renewable Energy Boulevard\nMakati City, Metro Manila 1226\nPhilippines'"
+                multiline
+                tag="span"
+              />
+            </p>
+            <p class="footer-line">
+              <EditableText content-key="footer.contact.phone" default="+1 831 224 5335" />
+            </p>
+            <p class="footer-line">
+              <EditableText content-key="footer.contact.email" default="info@raunlimited.com" />
+            </p>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-heading">
+              <EditableText content-key="footer.links.heading" default="Explore" />
+            </h4>
+            <router-link to="/services" class="footer-link">Services</router-link>
+            <router-link to="/solar-solutions" class="footer-link">Solar solutions</router-link>
+            <router-link to="/quote" class="footer-link">Get a quote</router-link>
+            <router-link to="/support" class="footer-link">Support</router-link>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <span>
+            <EditableText
+              content-key="footer.copy"
+              default="© 2026 Ra Unlimited. All rights reserved."
+            />
+          </span>
+          <div class="footer-legal">
+            <router-link to="/privacy-policy">Privacy policy</router-link>
+            <router-link to="/terms-of-service">Terms of service</router-link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
 </template>
-<script setup></script>
+
 <style scoped>
-.gradient-text {
-  background: linear-gradient(135deg, #343232, #ff7700, #ffa500);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.about { color: var(--color-ink); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+
+.section-head {
+  max-width: 760px;
+  margin-bottom: 64px;
+}
+.display-title.smaller {
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  color: var(--color-moss);
+  white-space: pre-line;
+  margin-bottom: 24px;
+}
+.eyebrow { margin-bottom: 16px; }
+
+/* SPLIT: MISSION + GOALS */
+.split { background: var(--color-cream); }
+.split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 96px;
+}
+.split-col { display: flex; flex-direction: column; gap: 24px; }
+.split-col .lead { max-width: 480px; }
+.quote {
+  font-style: italic;
+  color: var(--color-terracotta);
+  font-size: 1.4rem;
+  line-height: 1.4;
+  margin-top: 8px;
+  border-left: 2px solid var(--color-terracotta);
+  padding-left: 20px;
+}
+.goal { display: flex; gap: 24px; padding: 20px 0; border-bottom: 1px solid rgba(58, 79, 58, 0.12); }
+.goal:last-child { border-bottom: none; }
+.goal-num {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--color-terracotta);
+  flex-shrink: 0;
+  width: 40px;
+}
+.goal-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--color-moss);
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+  font-weight: 500;
 }
 
-.gradient-title {
-  background: linear-gradient(135deg, #ff7700, #ffa500, #dcdada);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* CTA QUOTE */
+.cta-quote-band {
+  background: var(--color-moss);
+  color: var(--color-cream);
 }
-
-.gradientCard {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 30%, #ffa500 100%);
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(255, 165, 0, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+.cta-quote {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 64px;
+  align-items: center;
 }
-
-.gradientCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 165, 0, 0.1) 0%, rgba(255, 119, 0, 0.05) 100%);
-  pointer-events: none;
+.cta-quote .display-title.smaller { color: #fff; }
+.cta-quote .lead { color: rgba(245, 240, 230, 0.85); margin-bottom: 24px; }
+.cta-chips { display: flex; gap: 12px; flex-wrap: wrap; }
+.chip {
+  background: rgba(245, 240, 230, 0.1);
+  border: 1px solid rgba(245, 240, 230, 0.2);
+  color: var(--color-cream);
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
 }
-
-.card-hover {
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.card-hover:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(255, 165, 0, 0.2);
-}
-
-.card-header {
-  background: linear-gradient(135deg, rgba(255, 119, 0, 0.9) 0%, rgba(255, 165, 0, 0.8) 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.card-header::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  animation: shimmer 3s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.v-card-text p {
-  transition: all 0.3s ease;
-}
-
-.gradientCard:hover .v-card-text p {
-  transform: translateX(5px);
-}
-
-.v-icon {
-  transition: all 0.3s ease;
-}
-
-.gradientCard:hover .v-icon {
-  transform: scale(1.1) rotate(10deg);
-}
-
-/* Efeito de brilho nos ícones */
-.card-header .v-icon {
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-/* Challenge Cards Styles */
-.challengeCard {
-  background: linear-gradient(135deg, #ffffff 0%, #f5f5f5 100%);
-  border: 2px solid rgba(255, 165, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.challengeCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-  border-color: rgba(255, 165, 0, 0.3);
-}
-
-/* Impact Cards Styles */
-.impactCard {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 1px solid rgba(255, 165, 0, 0.2);
-  transition: all 0.4s ease;
-}
-
-.impactCard:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(255, 165, 0, 0.15);
-}
-
-.impact-header {
-  background: linear-gradient(135deg, #ff7700 0%, #ffa500 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.impact-header::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
-  animation: shimmer 4s infinite;
-}
-
-/* Footer Styles */
-.footer-section {
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
-  position: relative;
-  overflow: hidden;
-}
-
-.footer-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    45deg,
-    rgba(255, 165, 0, 0.05) 0%,
-    transparent 50%,
-    rgba(255, 119, 0, 0.05) 100%
-  );
-  pointer-events: none;
-}
-
-.social-btn {
-  transition: all 0.3s ease;
-  border-color: rgba(255, 165, 0, 0.3);
-}
-
-.social-btn:hover {
-  background-color: rgba(255, 165, 0, 0.1);
-  border-color: #ffa500;
-  transform: translateY(-2px);
-}
-
-.footer-link {
-  text-align: left;
-  font-weight: normal;
-  transition: all 0.3s ease;
-}
-
-.footer-link:hover {
-  color: #ffa500 !important;
-  background-color: rgba(255, 165, 0, 0.05);
-  transform: translateX(5px);
-}
-
-.footer-divider {
-  border-color: rgba(255, 165, 0, 0.2);
-}
-
-.contact-item {
-  transition: all 0.3s ease;
-}
-
-.contact-item:hover {
-  transform: translateX(5px);
-}
-
-/* Enhanced animations for statistics */
-.challengeCard .v-icon {
-  transition: all 0.3s ease;
-}
-
-.challengeCard:hover .v-icon {
-  transform: scale(1.2) rotate(5deg);
-}
-
-/* Responsive improvements */
-@media (max-width: 768px) {
-  .card-hover:hover {
-    transform: translateY(-4px) scale(1.01);
-  }
-
-  .challengeCard:hover {
-    transform: translateY(-3px);
-  }
-
-  .impactCard:hover {
-    transform: translateY(-4px) scale(1.01);
-  }
-
-  .footer-link:hover {
-    transform: translateX(2px);
-  }
-
-  .display-2 {
-    font-size: 2rem !important;
-  }
-
-  .display-1 {
-    font-size: 1.8rem !important;
-  }
-
-  .text-h4 {
-    font-size: 1.3rem !important;
-  }
-
-  .gradientCard,
-  .challengeCard,
-  .impactCard {
-    height: auto !important;
-    min-height: 300px;
-  }
-
-  .card-header {
-    padding: 16px !important;
-  }
-
-  .v-card-text {
-    padding: 16px !important;
-  }
-
-  .contact-item {
-    margin-bottom: 16px;
-  }
-
-  .social-btn {
-    margin-bottom: 8px;
-  }
-
-  /* CTA cards mobile adjustments */
-  .cta-quote-card {
-    padding: 16px !important;
-  }
-
-  .text-h3 {
-    font-size: 1.5rem !important;
-  }
-
-  .text-h6 {
-    font-size: 1.1rem !important;
-  }
-
-  .service-cta-header,
-  .solution-cta-header {
-    padding: 16px !important;
-  }
-
-  .cta-service-card,
-  .cta-solution-card {
-    height: auto !important;
-    min-height: 450px;
-  }
-}
-
-/* Additional text effects */
-.text-h4.font-weight-bold {
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.text-green-darken-2 {
+.cta-quote-side { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-sun);
+  color: var(--color-ink);
+  padding: 18px 32px;
+  border-radius: 999px;
   font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s, background 0.15s;
 }
+.cta-btn:hover { background: #ffce85; transform: translateY(-1px); }
+.cta-btn-arrow { transition: transform 0.2s; }
+.cta-btn:hover .cta-btn-arrow { transform: translateX(4px); }
+.micro { font-size: 13px; color: rgba(245, 240, 230, 0.6); margin: 0; }
 
-.text-grey-darken-3 {
+/* CHALLENGE */
+.challenge-section { background: var(--color-cream-soft); }
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.stat-card {
+  background: #fff;
+  padding: 32px 24px;
+  border-radius: 20px;
+  border: 1px solid rgba(58, 79, 58, 0.08);
+}
+.stat-num {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: var(--color-terracotta);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+.stat-label {
   font-weight: 600;
+  font-size: 14px;
+  color: var(--color-moss);
+  margin-bottom: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
+.stat-desc { font-size: 14px; color: var(--color-ink-soft); line-height: 1.5; }
 
-/* CTA Sections Styles */
-.cta-quote-card {
-  background: linear-gradient(135deg, #fff7e6 0%, #ffffff 100%);
-  border: 2px solid rgba(255, 165, 0, 0.2);
-  transition: all 0.3s ease;
+/* IMPACT BEFORE/AFTER */
+.impact-section { background: var(--color-cream); }
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
-
-.cta-quote-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(255, 165, 0, 0.2);
-}
-
-.cta-service-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 1px solid rgba(255, 165, 0, 0.1);
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.cta-service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.cta-solution-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 1px solid rgba(30, 144, 255, 0.1);
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-.cta-solution-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(30, 144, 255, 0.15);
-}
-
-.service-cta-header {
-  background: linear-gradient(135deg, #ff7700 0%, #ffa500 100%);
-}
-
-.solution-cta-header {
-  background: linear-gradient(135deg, #1e90ff 0%, #4682b4 100%);
-}
-
-.benefits-list .v-chip {
-  transition: all 0.3s ease;
-}
-
-.benefits-list .v-chip:hover {
-  transform: scale(1.05);
-}
-
-/* Team Section Styles */
-.team-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 1px solid rgba(255, 165, 0, 0.2);
-  transition: all 0.4s ease;
-  overflow: hidden;
-}
-
-.team-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 50px rgba(255, 165, 0, 0.2);
-}
-
-.team-image-container {
-  position: relative;
-  overflow: hidden;
-  height: 500px;
-  background: linear-gradient(135deg, #ff7700 0%, #ffa500 50%, #ffcc80 100%);
+.impact-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 32px;
+  border: 1px solid rgba(58, 79, 58, 0.08);
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 20px;
+  flex-direction: column;
+  gap: 18px;
 }
+.impact-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--color-moss);
+  letter-spacing: -0.01em;
+  margin: 0 0 8px;
+}
+.impact-row { display: flex; flex-direction: column; gap: 8px; }
+.impact-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+.impact-tag-before { background: rgba(42, 42, 36, 0.06); color: var(--color-ink-soft); }
+.impact-tag-after { background: rgba(58, 79, 58, 0.12); color: var(--color-moss); }
+.impact-divider {
+  height: 1px;
+  background: rgba(58, 79, 58, 0.08);
+  margin: 8px 0;
+}
+.impact-after-text { color: var(--color-moss); }
 
-.delimg {
+/* TEAM */
+.team-section { background: var(--color-cream-soft); }
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+.team-card {
+  background: #fff;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(58, 79, 58, 0.08);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+.team-photo { background: var(--color-cream-deep); }
+.team-photo img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: top;
+  display: block;
+  min-height: 320px;
 }
-
-.team-image {
-  object-fit: cover; /* changed from contain */
-  object-position: top center;
-  width: 100%;
-  height: 500px;
-  transition: all 0.4s ease;
+.team-body { padding: 32px; display: flex; flex-direction: column; gap: 8px; }
+.team-name {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--color-moss);
+  letter-spacing: -0.01em;
+  margin: 0;
 }
-
-.team-card:hover .team-image {
-  transform: scale(1.05);
+.team-role {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-terracotta);
+  margin: 0 0 12px;
 }
+.team-bio { margin: 0; }
 
-.team-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-  transition: all 0.3s ease;
-  padding: 16px 20px;
+/* FOOTER */
+.footer-section {
+  background: var(--color-moss-deep);
+  color: var(--color-cream);
+  padding: 80px 0 32px;
+  margin-top: 0;
 }
-
-.team-card:hover .team-overlay {
-  background: linear-gradient(transparent, rgba(255, 165, 0, 0.9));
-  transform: none;
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(245, 240, 230, 0.1);
 }
-
-.leading-relaxed {
-  line-height: 1.8;
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
 }
-
-/* Team cards for tablets/small laptops */
-@media (max-width: 1024px) and (min-width: 769px) {
-  .team-card {
-    height: auto !important;
-    min-height: 950px;
-  }
-
-  .team-image-container {
-    height: 450px;
-  }
-
-  .team-image {
-    max-height: 430px !important;
-  }
-
-  .team-card .v-card-text {
-    padding: 20px !important;
-  }
-
-  .team-card .text-body-1 {
-    font-size: 0.95rem !important;
-    line-height: 1.7 !important;
-  }
+.footer-logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  object-fit: cover;
 }
-
-/* Team cards mobile responsive */
-@media (max-width: 768px) {
-  .team-card {
-    height: auto !important;
-    min-height: 700px;
-  }
-
-  .team-card:hover {
-    transform: translateY(-4px) scale(1.01);
-  }
-
-  .team-image-container {
-    height: 400px;
-    padding-top: 10px;
-  }
-
-  .team-image {
-    max-height: 380px !important;
-  }
-
-  .team-overlay .text-h4 {
-    font-size: 1.3rem !important;
-  }
-
-  .team-overlay .text-h6 {
-    font-size: 1rem !important;
-  }
-
-  /* Adjust card text for mobile */
-  .team-card .v-card-text {
-    padding: 16px !important;
-  }
-
-  .team-card .text-body-1 {
-    font-size: 0.9rem !important;
-    line-height: 1.6 !important;
-  }
-
-  /* Mobile section title adjustments */
-  .team-section .display-1 {
-    font-size: 1.8rem !important;
-    margin-bottom: 16px !important;
-  }
-
-  .team-section .subtitle-1 {
-    font-size: 1rem !important;
-    padding: 0 16px !important;
-  }
+.footer-name {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  letter-spacing: -0.01em;
 }
-
-/* Extra small mobile devices */
-@media (max-width: 480px) {
-  .team-card {
-    min-height: 650px !important;
-  }
-
-  .team-image-container {
-    height: 350px !important;
-  }
-
-  .team-image {
-    max-height: 330px !important;
-  }
-
-  .team-card .v-card-text {
-    padding: 12px !important;
-  }
-
-  .team-card .text-body-1 {
-    font-size: 0.85rem !important;
-    margin-bottom: 12px !important;
-  }
+.footer-tagline {
+  color: rgba(245, 240, 230, 0.65);
+  line-height: 1.6;
+  max-width: 400px;
+  margin-bottom: 24px;
 }
-
-/* Global top focus for cover images */
-:deep(.v-img--cover img) {
-  object-position: top center;
+.socials { display: flex; gap: 12px; }
+.socials a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(245, 240, 230, 0.2);
+  color: var(--color-cream);
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  transition: background 0.15s, border-color 0.15s;
 }
-
-/* Ensure team images actually crop from top */
-.team-image {
-  object-fit: cover; /* changed from contain */
-  object-position: top center;
-  width: 100%;
-  height: 500px;
-  transition: all 0.4s ease;
+.socials a:hover {
+  background: var(--color-sun);
+  color: var(--color-moss-deep);
+  border-color: var(--color-sun);
 }
+.socials .mdi { font-size: 18px; }
+.footer-heading {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-sun);
+  margin: 0 0 20px;
+}
+.footer-line {
+  color: rgba(245, 240, 230, 0.7);
+  margin: 0 0 12px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.footer-link {
+  display: block;
+  color: rgba(245, 240, 230, 0.7);
+  text-decoration: none;
+  font-size: 14px;
+  padding: 6px 0;
+  transition: color 0.15s;
+}
+.footer-link:hover { color: var(--color-sun); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 24px;
+  font-size: 13px;
+  color: rgba(245, 240, 230, 0.5);
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.footer-legal { display: flex; gap: 24px; }
+.footer-legal a { color: rgba(245, 240, 230, 0.5); text-decoration: none; }
+.footer-legal a:hover { color: var(--color-sun); }
 
-/* Keep special override for del image if needed */
-.delimg {
-  object-position: top center;
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .split-grid { grid-template-columns: 1fr; gap: 48px; }
+  .cta-quote { grid-template-columns: 1fr; gap: 32px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .impact-grid { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+  .team-card { grid-template-columns: 1fr; }
+  .team-photo img { aspect-ratio: 4 / 3; min-height: 0; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .container { padding: 0 24px; }
+}
+@media (max-width: 600px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; }
 }
 </style>

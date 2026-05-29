@@ -1,196 +1,251 @@
+<script setup>
+import { ref } from 'vue'
+import EditableText from '../components/EditableText.vue'
+import PageHeader from '../components/PageHeader.vue'
+
+const channels = [
+  { key: 'hotline', icon: 'mdi-phone', title: '24/7 hotline', desc: 'Emergency support and technical assistance around the clock.', cta: '+1 831 224 5335' },
+  { key: 'email', icon: 'mdi-email', title: 'Email support', desc: 'Send your questions — we respond within 4 hours on business days.', cta: 'support@raunlimited.ph' },
+  { key: 'chat', icon: 'mdi-message-text', title: 'Live chat', desc: 'Chat with our team during business hours for instant help.', cta: 'Start chat' },
+]
+
+const faqs = [
+  { key: 'install', q: 'How long does a solar installation take?', a: 'A typical residential installation takes 1–3 days depending on system size and complexity. Commercial installations may take 1–2 weeks. We provide a detailed timeline during your consultation.' },
+  { key: 'typhoon', q: 'What happens during typhoon season?', a: 'Our solar panels are rated for winds up to 200 km/h and are designed to withstand Philippine weather conditions. We use reinforced mounting and provide comprehensive insurance coverage.' },
+  { key: 'maintain', q: 'How much maintenance do solar panels require?', a: 'Solar panels require minimal maintenance. We recommend annual inspections and occasional cleaning. Our maintenance packages include monitoring, cleaning and performance optimization.' },
+  { key: 'sell', q: 'Can I sell excess energy back to the grid?', a: 'Yes. Through net metering programs available in most areas of the Philippines, you can sell excess energy back to your utility company, earning credits on your bill.' },
+  { key: 'finance', q: 'What financing options are available?', a: 'We offer cash payment, installment plans (6–60 months), solar loans, and lease-to-own programs. We will help you find the best option for your budget.' },
+  { key: 'monitor', q: 'How do I monitor system performance?', a: 'All systems include real-time monitoring through a mobile app and web portal. Track production, consumption, savings and system health 24/7.' },
+]
+
+const open = ref(faqs[0].key)
+function toggle(key) {
+  open.value = open.value === key ? null : key
+}
+</script>
+
 <template>
-  <v-container class="py-8">
-    <div class="text-center mb-10">
-      <h1 class="display-2 font-weight-bold mb-4 gradient-title">Support Center</h1>
-      <p class="subtitle-1 text-grey-darken-1 mx-auto" style="max-width: 600px">
-        We're here to help you get the most out of your solar energy system
-      </p>
-    </div>
+  <div class="support">
+    <PageHeader
+      eyebrow-key="support.eyebrow"
+      eyebrow-default="Support"
+      title-key="support.title"
+      :title-default="`We're here to help —\nbefore, during and after.`"
+      lead-key="support.lead"
+      lead-default="From your first quote to a decade of operation, we stand behind every installation we make."
+    />
 
-    <v-row class="mb-12">
-      <v-col cols="12" md="4" class="mb-6">
-        <v-card
-          class="support-card elevation-6 text-center"
-          style="border-radius: 16px; height: 300px"
-        >
-          <v-card-text class="pa-6 d-flex flex-column justify-center h-100">
-            <v-icon size="60" color="orange" class="mb-4">mdi-phone</v-icon>
-            <h3 class="text-h5 font-weight-bold mb-3">24/7 Hotline</h3>
-            <p class="text-body-2 mb-4">
-              Emergency support and technical assistance available around the clock
+    <section class="section">
+      <div class="container">
+        <div class="channels">
+          <article v-for="c in channels" :key="c.key" class="channel">
+            <div class="channel-icon"><i :class="`mdi ${c.icon}`" /></div>
+            <h3 class="channel-title">
+              <EditableText :content-key="`support.${c.key}.title`" :default="c.title" />
+            </h3>
+            <p class="channel-desc body-text">
+              <EditableText
+                :content-key="`support.${c.key}.desc`"
+                :default="c.desc"
+                multiline
+                tag="span"
+              />
             </p>
-            <v-btn color="orange" variant="outlined" class="mt-auto">
-              Call Now: +1 831 224 5335
-            </v-btn>
-          </v-card-text>
-        </v-card>
-      </v-col>
+            <div class="channel-cta">
+              <EditableText :content-key="`support.${c.key}.cta`" :default="c.cta" />
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-      <v-col cols="12" md="4" class="mb-6">
-        <v-card
-          class="support-card elevation-6 text-center"
-          style="border-radius: 16px; height: 300px"
-        >
-          <v-card-text class="pa-6 d-flex flex-column justify-center h-100">
-            <v-icon size="60" color="blue" class="mb-4">mdi-email</v-icon>
-            <h3 class="text-h5 font-weight-bold mb-3">Email Support</h3>
-            <p class="text-body-2 mb-4">
-              Send us your questions and we'll respond within 4 hours during business days
-            </p>
-            <v-btn color="blue" variant="outlined" class="mt-auto">
-              Email: support@raunlimited.ph
-            </v-btn>
-          </v-card-text>
-        </v-card>
-      </v-col>
+    <section class="section faq-section">
+      <div class="container faq-wrap">
+        <div class="faq-head">
+          <div class="eyebrow">
+            <EditableText content-key="support.faq.eyebrow" default="FAQs" />
+          </div>
+          <h2 class="display-title smaller">
+            <EditableText
+              content-key="support.faq.title"
+              :default="'Questions we hear\nmost often.'"
+              multiline
+              tag="span"
+            />
+          </h2>
+        </div>
 
-      <v-col cols="12" md="4" class="mb-6">
-        <v-card
-          class="support-card elevation-6 text-center"
-          style="border-radius: 16px; height: 300px"
-        >
-          <v-card-text class="pa-6 d-flex flex-column justify-center h-100">
-            <v-icon size="60" color="green" class="mb-4">mdi-chat</v-icon>
-            <h3 class="text-h5 font-weight-bold mb-3">Live Chat</h3>
-            <p class="text-body-2 mb-4">
-              Chat with our support team during business hours for instant help
-            </p>
-            <v-btn color="green" variant="outlined" class="mt-auto"> Start Chat </v-btn>
-          </v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
+        <div class="faq-list">
+          <div v-for="f in faqs" :key="f.key" :class="['faq', { open: open === f.key }]">
+            <button class="faq-q" @click="toggle(f.key)">
+              <span>
+                <EditableText :content-key="`support.faq.${f.key}.q`" :default="f.q" />
+              </span>
+              <span class="faq-toggle">{{ open === f.key ? '−' : '+' }}</span>
+            </button>
+            <Transition name="acc">
+              <div v-if="open === f.key" class="faq-a">
+                <EditableText
+                  :content-key="`support.faq.${f.key}.a`"
+                  :default="f.a"
+                  multiline
+                  tag="span"
+                />
+              </div>
+            </Transition>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <v-row class="mb-12">
-      <v-col cols="12">
-        <h2 class="text-h3 font-weight-bold text-center mb-8 gradient-title">
-          Frequently Asked Questions
-        </h2>
-        <v-expansion-panels variant="accordion" multiple>
-          <v-expansion-panel>
-            <v-expansion-panel-title>
-              <strong>How long does a solar system installation take?</strong>
-            </v-expansion-panel-title>
-            <v-expansion-panel-text>
-              A typical residential solar installation takes 1-3 days, depending on system size and
-              complexity. Commercial installations may take 1-2 weeks. We'll provide a detailed
-              timeline during your consultation.
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-
-          <v-expansion-panel>
-            <v-expansion-panel-title>
-              <strong>What happens during typhoon season?</strong>
-            </v-expansion-panel-title>
-            <v-expansion-panel-text>
-              Our solar panels are rated for winds up to 200 km/h and are designed to withstand
-              Philippine weather conditions. We use reinforced mounting systems and provide
-              comprehensive insurance coverage.
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-
-          <v-expansion-panel>
-            <v-expansion-panel-title>
-              <strong>How much maintenance do solar panels require?</strong>
-            </v-expansion-panel-title>
-            <v-expansion-panel-text>
-              Solar panels require minimal maintenance. We recommend annual inspections and
-              occasional cleaning. Our maintenance packages include monitoring, cleaning, and
-              performance optimization.
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-
-          <v-expansion-panel>
-            <v-expansion-panel-title>
-              <strong>Can I sell excess energy back to the grid?</strong>
-            </v-expansion-panel-title>
-            <v-expansion-panel-text>
-              Yes! Through net metering programs available in most areas of the Philippines, you can
-              sell excess energy back to your utility company, earning credits on your electricity
-              bill.
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-
-          <v-expansion-panel>
-            <v-expansion-panel-title>
-              <strong>What financing options are available?</strong>
-            </v-expansion-panel-title>
-            <v-expansion-panel-text>
-              We offer various financing options including cash payment, installment plans (6-60
-              months), solar loans, and lease-to-own programs. We'll help you find the best option
-              for your budget.
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-
-          <v-expansion-panel>
-            <v-expansion-panel-title>
-              <strong>How do I monitor my system's performance?</strong>
-            </v-expansion-panel-title>
-            <v-expansion-panel-text>
-              All our systems come with real-time monitoring through a mobile app and web portal.
-              You can track energy production, consumption, savings, and system health 24/7.
-            </v-expansion-panel-text>
-          </v-expansion-panel>
-        </v-expansion-panels>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col cols="12">
-        <v-card class="contact-support-card pa-8 text-center" style="border-radius: 20px">
-          <h3 class="text-h4 font-weight-bold mb-4">Still Need Help?</h3>
-          <p class="text-body-1 mb-6">
-            Our technical support team is standing by to assist you with any questions or issues
+    <section class="section-tight cta-band">
+      <div class="container cta">
+        <div>
+          <h3 class="display-title smaller">
+            <EditableText content-key="support.cta.title" default="Still need help?" />
+          </h3>
+          <p class="lead">
+            <EditableText
+              content-key="support.cta.lead"
+              default="Our team is standing by for any question or issue."
+            />
           </p>
-          <v-btn color="orange" size="large" class="mr-4 mb-2">
-            <v-icon left>mdi-phone</v-icon>
-            Call Support
-          </v-btn>
-          <v-btn color="blue" variant="outlined" size="large" class="mb-2">
-            <v-icon left>mdi-email</v-icon>
-            Email Us
-          </v-btn>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+        </div>
+        <div class="cta-actions">
+          <a href="tel:+18312245335" class="cta-btn">
+            <EditableText content-key="support.cta.call" default="Call support" tag="span" />
+          </a>
+          <a href="mailto:support@raunlimited.ph" class="cta-btn-ghost">
+            <EditableText content-key="support.cta.email" default="Email us" tag="span" />
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
-<script setup></script>
-
 <style scoped>
-.gradient-title {
-  background: linear-gradient(135deg, #ff7700, #ffa500, #dcdada);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+.support { color: var(--color-ink); background: var(--color-cream); }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
 
-.support-card {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border: 1px solid rgba(255, 165, 0, 0.1);
-  transition: all 0.3s ease;
+.channels {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
-
-.support-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  border-color: rgba(255, 165, 0, 0.3);
+.channel {
+  background: #fff;
+  border-radius: 24px;
+  padding: 36px;
+  border: 1px solid rgba(58, 79, 58, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
-
-.contact-support-card {
-  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-  border: 2px solid rgba(255, 165, 0, 0.2);
+.channel-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--color-cream-deep);
+  display: grid;
+  place-items: center;
+  color: var(--color-moss);
+  font-size: 24px;
 }
-
-:deep(.v-expansion-panel-title) {
+.channel-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  color: var(--color-moss);
+  margin: 0;
+}
+.channel-desc { margin: 0; }
+.channel-cta {
+  font-family: var(--font-serif);
   font-size: 1.1rem;
-  padding: 20px;
+  font-style: italic;
+  color: var(--color-terracotta);
+  margin-top: auto;
+  padding-top: 8px;
 }
 
-:deep(.v-expansion-panel-text__wrapper) {
-  padding: 20px;
+.faq-section { background: var(--color-cream-soft); }
+.faq-wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: start; }
+.faq-head .eyebrow { margin-bottom: 16px; }
+.display-title.smaller {
+  font-size: clamp(1.75rem, 3.5vw, 2.6rem);
+  color: var(--color-moss);
+  white-space: pre-line;
+  margin: 0;
+}
+.faq-list { display: flex; flex-direction: column; }
+.faq { border-bottom: 1px solid rgba(58, 79, 58, 0.12); }
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  text-align: left;
+  font: inherit;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  color: var(--color-moss);
+  letter-spacing: -0.01em;
+  padding: 22px 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+.faq-toggle {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-cream-deep);
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  color: var(--color-moss);
+  transition: background 0.15s;
+}
+.faq.open .faq-toggle { background: var(--color-terracotta); color: #fff; }
+.faq-a {
+  padding-bottom: 22px;
+  color: var(--color-ink-soft);
+  line-height: 1.7;
+  font-size: 15px;
+}
+.acc-enter-active, .acc-leave-active { transition: opacity 0.15s; }
+.acc-enter-from, .acc-leave-to { opacity: 0; }
+
+.cta-band { background: var(--color-moss); color: var(--color-cream); }
+.cta { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; align-items: center; }
+.cta .display-title.smaller { color: #fff; margin-bottom: 12px; }
+.cta .lead { color: rgba(245, 240, 230, 0.85); margin: 0; }
+.cta-actions { display: flex; gap: 12px; justify-self: end; flex-wrap: wrap; }
+.cta-btn, .cta-btn-ghost {
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 14px;
+  transition: transform 0.15s, background 0.15s;
+}
+.cta-btn { background: var(--color-sun); color: var(--color-ink); }
+.cta-btn:hover { background: #ffce85; transform: translateY(-1px); }
+.cta-btn-ghost {
+  background: rgba(245, 240, 230, 0.08);
+  color: var(--color-cream);
+  border: 1px solid rgba(245, 240, 230, 0.25);
+}
+.cta-btn-ghost:hover { background: rgba(245, 240, 230, 0.15); }
+
+@media (max-width: 960px) {
+  .channels { grid-template-columns: 1fr; }
+  .faq-wrap { grid-template-columns: 1fr; gap: 32px; }
+  .cta { grid-template-columns: 1fr; }
+  .cta-actions { justify-self: stretch; }
+  .container { padding: 0 24px; }
 }
 </style>
