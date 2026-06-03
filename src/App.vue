@@ -1,18 +1,20 @@
 <script setup>
-import { onMounted, computed, watchEffect } from 'vue'
-import NavBar from './components/navBar.vue'
+import { computed, onMounted, watchEffect } from 'vue'
+import { useRoute } from 'vue-router'
 import AdminBar from './components/AdminBar.vue'
 import { useAuth } from './composables/useAuth.js'
 import { useContent } from './composables/useContent.js'
-import { useRoute } from 'vue-router'
+import { useI18n } from './composables/useI18n.js'
 
 const { bootstrap: bootstrapAuth, isAuthenticated } = useAuth()
 const { bootstrap: bootstrapContent } = useContent()
+const { bootstrap: bootstrapI18n } = useI18n()
 const route = useRoute()
 
-const hideChrome = computed(() => route.meta?.bare === true)
+const hideAdminBar = computed(() => route.name === 'login' || route.name === 'quotes')
 
 onMounted(async () => {
+  bootstrapI18n()
   await Promise.all([bootstrapAuth(), bootstrapContent()])
 })
 
@@ -24,10 +26,9 @@ watchEffect(() => {
 
 <template>
   <v-app>
-    <NavBar v-if="!hideChrome" />
     <v-main>
       <router-view />
     </v-main>
-    <AdminBar v-if="!hideChrome" />
+    <AdminBar v-if="!hideAdminBar" />
   </v-app>
 </template>

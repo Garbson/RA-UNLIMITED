@@ -1,7 +1,7 @@
 <script setup>
-import { computed, ref, nextTick, watch } from 'vue'
-import { useContent } from '../composables/useContent.js'
+import { computed, nextTick, ref, watch } from 'vue'
 import { useAuth } from '../composables/useAuth.js'
+import { useContent } from '../composables/useContent.js'
 
 const props = defineProps({
   contentKey: { type: String, required: true },
@@ -28,13 +28,17 @@ const elRef = ref(null)
 const value = computed(() => get(props.contentKey, props.default))
 
 function escapeHtml(s) {
-  return s.replace(/[&<>"']/g, (c) => ({
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#39;',
-  }[c]))
+  return s.replace(
+    /[&<>"']/g,
+    (c) =>
+      ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;',
+      })[c],
+  )
 }
 
 // Render *italic* as <em>, **bold** as <strong>, newlines as <br> when multiline.
@@ -53,6 +57,9 @@ function startEdit() {
   error.value = null
   nextTick(() => {
     if (elRef.value) {
+      // Override v-html content with plain text so contenteditable
+      // works on a clean text-node tree, avoiding Vue DOM conflicts.
+      elRef.value.textContent = draft.value
       elRef.value.focus()
       const range = document.createRange()
       range.selectNodeContents(elRef.value)
@@ -111,10 +118,8 @@ function onKeydown(e) {
     @click="startEdit"
     @blur="isEditing && commit()"
     @keydown="onKeydown"
-  >
-    <template v-if="isEditing">{{ draft }}</template>
-    <span v-else v-html="renderedHtml" />
-  </component>
+    v-html="isEditing ? undefined : renderedHtml"
+  />
 </template>
 
 <style scoped>
