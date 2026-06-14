@@ -4,11 +4,11 @@
 // `tintColor` recolors any meshes that lack proper materials (e.g. raw FBX trees).
 import { Color, MeshStandardMaterial } from 'three'
 import { shallowRef, watch, watchEffect, computed } from 'vue'
-import { loadFBX, loadGLB, loadOBJ } from './ModelLoaders.js'
+import { loadFBX, loadOBJ } from './ModelLoaders.js'
 
 const props = defineProps({
   url: { type: String, required: true },
-  type: { type: String, default: 'fbx' }, // 'fbx' | 'obj' | 'glb'
+  type: { type: String, default: 'fbx' }, // 'fbx' | 'obj'
   mtlUrl: { type: String, default: null },
   targetSize: { type: Number, default: 2 },
   position: { type: Array, default: () => [0, 0, 0] },
@@ -25,7 +25,6 @@ watchEffect(async () => {
   let loader
   if (props.type === 'obj')
     loader = loadOBJ(props.url, { mtlUrl: props.mtlUrl, targetSize: props.targetSize })
-  else if (props.type === 'glb') loader = loadGLB(props.url, { targetSize: props.targetSize })
   else loader = loadFBX(props.url, { targetSize: props.targetSize })
   try {
     const master = await loader

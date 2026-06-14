@@ -283,6 +283,7 @@ onUnmounted(() => {
               <h2 class="panel-title"><T k="act2.title" /></h2>
               <p class="panel-body"><T k="act2.body" /></p>
               <div class="counters">
+                <p class="projection-note"><T k="act2.projection" /></p>
                 <div v-for="(c, i) in counters.act2" :key="c.key" class="ctr">
                   <span class="ctr-num">
                     <Counter
@@ -309,6 +310,7 @@ onUnmounted(() => {
               <h2 class="panel-title"><T k="act4.title" /></h2>
               <p class="panel-body"><T k="act4.body" /></p>
               <div class="counters">
+                <p class="projection-note"><T k="act4.projection" /></p>
                 <div v-for="(c, i) in counters.act4" :key="c.key" class="ctr">
                   <span class="ctr-num">
                     <Counter
@@ -334,6 +336,7 @@ onUnmounted(() => {
               <h2 class="panel-title"><T k="act5.title" /></h2>
               <p class="panel-body"><T k="act5.body" /></p>
               <div class="counters">
+                <p class="projection-note"><T k="act5.projection" /></p>
                 <div v-for="(c, i) in counters.act5" :key="c.key" class="ctr">
                   <span class="ctr-num">
                     <Counter
@@ -479,6 +482,17 @@ onUnmounted(() => {
 }
 
 /* ── Counters ─────────────────────────────────────────────────────────────────── */
+.projection-note {
+  grid-column: 1 / -1;
+  margin: 0 0 2px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.4;
+  color: var(--color-orange);
+}
+.act-panel.light .projection-note { color: var(--color-blue); }
 .counters {
   display: grid;
   grid-template-columns: 1fr 1fr;

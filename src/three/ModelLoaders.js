@@ -2,7 +2,6 @@
 // Returns Three.js Object3D you can `<primitive :object="model" />` into a TresJS scene.
 import { Box3, Vector3 } from 'three'
 import { FBXLoader } from 'three/addons/loaders/FBXLoader.js'
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
 import { MTLLoader } from 'three/addons/loaders/MTLLoader.js'
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js'
 
@@ -33,25 +32,6 @@ export function loadFBX(url, { targetSize = 2 } = {}) {
     new FBXLoader().load(
       url,
       (object) => {
-        centerAndScale(object, targetSize)
-        resolve(object)
-      },
-      undefined,
-      reject,
-    )
-  })
-  cache.set(key, promise)
-  return promise
-}
-
-export function loadGLB(url, { targetSize = 2 } = {}) {
-  const key = `glb:${url}:${targetSize}`
-  if (cache.has(key)) return cache.get(key)
-  const promise = new Promise((resolve, reject) => {
-    new GLTFLoader().load(
-      url,
-      (gltf) => {
-        const object = gltf.scene || gltf.scenes?.[0]
         centerAndScale(object, targetSize)
         resolve(object)
       },

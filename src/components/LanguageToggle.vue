@@ -21,6 +21,14 @@ const { lang, setLang } = useI18n()
     >
       TL
     </button>
+    <span class="sep">·</span>
+    <button
+      :class="['opt', { active: lang === 'ceb' }]"
+      @click="setLang('ceb')"
+      aria-label="Bisaya"
+    >
+      BIS
+    </button>
   </div>
 </template>
 
